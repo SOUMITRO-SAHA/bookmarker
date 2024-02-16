@@ -1,7 +1,9 @@
+import SideMenu from "@/components/SideMenu/SideMenu";
 import "../../styles/globals.css";
 
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
+import { cn } from "@/lib/utils";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -16,8 +18,13 @@ export default function RootLayout({
   children: React.ReactNode;
 }): JSX.Element {
   return (
-    <html lang="en">
-      <body className={inter.className}>{children}</body>
+    <html lang="en" className="overflow-hidden">
+      <body className={cn(inter.className, "grid grid-cols-12")}>
+        <main className="col-span-2">
+          <SideMenu />
+        </main>
+        <main className="col-span-10 bg-slate-900/95">{children}</main>
+      </body>
     </html>
   );
 }
