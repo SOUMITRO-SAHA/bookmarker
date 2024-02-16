@@ -1,21 +1,33 @@
 import { renderHomeIcon } from "@/assets/icons.svg";
 import { MenuItem, menuItems } from "@/lib/constant";
-import { LibraryBig, ListTodo, Play, Star } from "lucide-react";
-import React from "react";
+import { Avatar, AvatarFallback, AvatarImage } from "@/common/ui/avatar";
+import { LibraryBig, ListTodo, Play, Plus, Star } from "lucide-react";
+import { Button } from "@/common/Button";
+import { api } from "@/lib/trpc";
 interface SideMenuProps {
   //Props
 }
 
-export const getIcons = (key: string) => {
-  if (key.toLowerCase() === "home") return renderHomeIcon();
-  else if (key.toLowerCase() === "favourite") return <Star />;
-  else if (key.toLowerCase() === "videos") return <Play />;
-  else if (key.toLowerCase() === "articles") return <LibraryBig />;
-  else if (key.toLowerCase() === "unread") return <ListTodo />;
-  return <div className="w-4 h-4 rounded-full bg-secondary"></div>;
+const getIcons = (key: string) => {
+  const lowerCaseKey = key.toLowerCase();
+  switch (lowerCaseKey) {
+    case "home":
+      return renderHomeIcon();
+    case "favourite":
+      return <Star />;
+    case "videos":
+      return <Play />;
+    case "articles":
+      return <LibraryBig />;
+    case "unread":
+      return <ListTodo />;
+    default:
+      return <div className="w-4 h-4 rounded-full bg-secondary"></div>;
+  }
 };
 
-const SideMenu: React.FC<SideMenuProps> = () => {
+export type MenuItemsFromDB = {};
+const SideMenu = async () => {
   const renderMenuItems = (item: MenuItem) => {
     const { id, label, route, subfolders } = item;
     return (
@@ -32,38 +44,52 @@ const SideMenu: React.FC<SideMenuProps> = () => {
   };
 
   return (
-    <section className="w-full h-screen bg-primary">
-      {/* Brand */}
-      <div className="flex items-center justify-center h-12 text-xl text-primary-foreground bg-slate-800">
-        {/* Brand Logo */}
-        <div className="w-10 h-10">
-          <svg
-            viewBox="0 0 1024 1024"
-            className="w-full h-full icon"
-            version="1.1"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              d="M789.333333 917.333333l-277.333333-128-277.333333 128V192c0-46.933333 38.4-85.333333 85.333333-85.333333h384c46.933333 0 85.333333 38.4 85.333333 85.333333v725.333333z"
-              fill="#F2F2F2"
-            />
-          </svg>
+    <section className="flex flex-col justify-between w-full h-screen bg-primary">
+      <div>
+        {/* Brand */}
+        <div className="flex items-center justify-center h-12 text-xl text-primary-foreground bg-slate-800">
+          {/* Brand Logo */}
+          <div className="w-8 h-8 xl:w-10 xl:h-10">
+            <svg
+              viewBox="0 0 1024 1024"
+              className="w-full h-full icon"
+              version="1.1"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M789.333333 917.333333l-277.333333-128-277.333333 128V192c0-46.933333 38.4-85.333333 85.333333-85.333333h384c46.933333 0 85.333333 38.4 85.333333 85.333333v725.333333z"
+                fill="#F2F2F2"
+              />
+            </svg>
+          </div>
+          <div className="text-base xl:text-xl">Bookmarker</div>
         </div>
-        <div>Bookmarker</div>
+
+        {/* Menu Items */}
+        <div className="overflow-hidden overflow-y-auto">
+          {/* Default */}
+          <div className="flex flex-col gap-1 mx-1 mt-2">
+            {menuItems.map((item: MenuItem) => renderMenuItems(item))}
+          </div>
+
+          {/* Divider */}
+          <div className="divider" />
+
+          {/* User Created */}
+          <div className="flex flex-col gap-1 mx-1 mt-2"></div>
+        </div>
       </div>
 
-      {/* Menu Items */}
-      <div className="overflow-hidden overflow-y-auto">
-        {/* Default */}
-        <div className="flex flex-col gap-1 mx-1 mt-2">
-          {menuItems.map((item: MenuItem) => renderMenuItems(item))}
-        </div>
-        {/* Divider */}
-        <div className="divider" />
-        {/* User Created */}
-        <div className="flex flex-col gap-1 mx-1 mt-2">
-          {menuItems.map((item: MenuItem) => renderMenuItems(item))}
-        </div>
+      {/* Create Button */}
+      <div className="flex items-center justify-center mb-2">
+        <Button
+          variant="secondary"
+          size={"lg"}
+          className="flex items-center justify-center gap-3 "
+        >
+          <Plus />
+          <div>Create</div>
+        </Button>
       </div>
     </section>
   );

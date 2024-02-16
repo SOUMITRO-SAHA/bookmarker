@@ -18,13 +18,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }): JSX.Element {
   return (
-    <html lang="en" className="overflow-hidden">
-      <body className={cn(inter.className, "grid grid-cols-12")}>
-        <main className="col-span-2">
-          <SideMenu />
-        </main>
-        <main className="col-span-10 bg-slate-900/95">{children}</main>
-      </body>
+    <html lang="en" className="overflow-hidden debug-screens">
+      <body className={cn(inter.className)}>{children}</body>
     </html>
   );
 }
