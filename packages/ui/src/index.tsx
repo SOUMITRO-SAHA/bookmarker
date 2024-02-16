@@ -1,1 +1,2 @@
-export * from "./components/button";
+import "../styles/globals.css";
+export * from "./components/ui/button";
