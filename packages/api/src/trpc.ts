@@ -36,6 +36,8 @@ const createInnerTRPCContext = (opts: CreateContextOptions) => {
   };
 };
 
+export type Context = Awaited<ReturnType<typeof createInnerTRPCContext>>;
+
 /**
  * This is the actual context used in the router to process every request
  */
@@ -59,7 +61,7 @@ export const createTRPCContext = async (opts: CreateNextContextOptions) => {
 import { initTRPC, TRPCError } from "@trpc/server";
 import superjson from "superjson";
 
-const t = initTRPC.context<typeof createTRPCContext>().create({
+const t = initTRPC.context<Context>().create({
   transformer: superjson,
   errorFormatter({ shape }) {
     return shape;
@@ -88,8 +90,8 @@ export const publicProcedure = t.procedure;
 /**
  * Middleware that enforces users are logged in before running the procedure
  */
-const enforceUserIsAuthed = t.middleware(({ ctx, next }) => {
-  if (!ctx.session || !ctx.session.user) {
+const isAuthenticated = t.middleware(({ ctx, next }) => {
+  if (!ctx.session?.user) {
     throw new TRPCError({ code: "UNAUTHORIZED" });
   }
   return next({
@@ -106,4 +108,11 @@ const enforceUserIsAuthed = t.middleware(({ ctx, next }) => {
  * Only accessible to logged-in users. Verifies the session is valid and
  * guarantees ctx.session.user is not null
  */
-export const protectedProcedure = t.procedure.use(enforceUserIsAuthed);
+
+export const protectedProcedure = t.procedure.use(isAuthenticated);
+
+/**
+ * Create a server-side caller
+ * @link https://trpc.io/docs/v11/server/server-side-calls
+ */
+export const createCallerFactory = t.createCallerFactory;
