@@ -1,6 +1,6 @@
 "use client";
 
-import { Button } from "@repo/ui";
+import { Button } from "@repo/ui/dist/components/ui/button.mjs";
 
 export default function Page(): JSX.Element {
   return (
