@@ -10,14 +10,9 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model Post {
-  id      String @id @default(cuid())
-  title   String
-  content String
-}
+// Enums
 
-// NextAuth.js Models
-// @see https://next-auth.js.org/schemas/models
+// Models
 model Account {
   id                String  @id @default(cuid())
   userId            String
@@ -60,4 +55,40 @@ model VerificationToken {
   expires    DateTime
 
   @@unique([identifier, token])
+}
+
+model Icon {
+  id       String     @id @default(cuid())
+  label    String     @unique
+  MenuItem MenuItem[]
+}
+
+model Subfolder {
+  id         String   @id @default(cuid())
+  label      String   @unique
+  route      String
+  menuItemId String
+  parent     MenuItem @relation(fields: [menuItemId], references: [id])
+  Post       Post[]
+}
+
+model MenuItem {
+  id         String      @id @default(cuid())
+  label      String      @unique
+  route      String      @unique
+  iconId     String
+  icon       Icon        @relation(fields: [iconId], references: [id])
+  subfolders Subfolder[]
+  Post       Post[]
+}
+
+model Post {
+  id          String     @id @default(cuid())
+  title       String
+  description String?    @db.Text
+  content     String?    @db.Text
+  menuItemId  String?
+  menuItem    MenuItem?  @relation(fields: [menuItemId], references: [id])
+  subfolderId String?
+  subfolder   Subfolder? @relation(fields: [subfolderId], references: [id])
 }
