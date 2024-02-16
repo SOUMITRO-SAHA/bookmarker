@@ -9,8 +9,10 @@
     "lint": "eslint . --max-warnings 0"
   },
   "dependencies": {
+    "@radix-ui/react-avatar": "^1.0.4",
     "@radix-ui/react-icons": "^1.3.0",
     "@radix-ui/react-slot": "^1.0.2",
+    "@reduxjs/toolkit": "^2.2.1",
     "@repo/api": "workspace:*",
     "@repo/db": "workspace:*",
     "@tanstack/react-query": "^4.18.0",
@@ -24,6 +26,8 @@
     "next": "^14.0.4",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-redux": "^9.1.0",
+    "react-spinners": "^0.13.8",
     "tailwind-merge": "^2.2.1",
     "tailwindcss-animate": "^1.0.7"
   },
