@@ -5,7 +5,7 @@ import type {
 } from "next";
 import { unstable_getServerSession } from "next-auth";
 
-import { authOptions } from "./auth-options";
+import { authOptions } from "./auth-options.ts";
 
 export const getServerSession = async (
   ctx:
