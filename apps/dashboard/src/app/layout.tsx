@@ -19,7 +19,16 @@ export default function RootLayout({
 }): JSX.Element {
   return (
     <html lang="en" className="overflow-hidden debug-screens">
-      <body className={cn(inter.className)}>{children}</body>
+      <body className={cn(inter.className)}>
+        <main className="grid grid-cols-12">
+          <section className="col-span-2">
+            <SideMenu />
+          </section>
+          <section className="col-span-10 text-white bg-slate-800">
+            {children}
+          </section>
+        </main>
+      </body>
     </html>
   );
 }

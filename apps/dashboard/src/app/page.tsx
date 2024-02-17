@@ -1,12 +1,10 @@
-import SideMenu from "@/components/SideMenu/SideMenu";
+"use client";
+import { api } from "@/lib/trpc";
+import { useEffect } from "react";
 
-export default async function Page() {
-  return (
-    <main className="grid grid-cols-12">
-      <section className="col-span-2">
-        <SideMenu />
-      </section>
-      <section className="col-span-10 text-white bg-slate-800">Hellow</section>
-    </main>
-  );
+export default function Page() {
+  const test = api.getUsers.query();
+  console.log(test);
+
+  return <main>Home Page</main>;
 }
