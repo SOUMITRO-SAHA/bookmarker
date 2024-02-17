@@ -11,6 +11,10 @@ datasource db {
 }
 
 // Enums
+enum UserPermissionRole {
+  USER
+  ADMIN
+}
 
 // Models
 model Account {
@@ -39,14 +43,80 @@ model Session {
   user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
 }
 
+model UserPassword {
+  hash   String
+  userId String @unique
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model ResetPasswordRequest {
+  id        String   @id @default(cuid())
+  email     String
+  expires   DateTime
+  updatedAt DateTime @updatedAt
+  createdAt DateTime @default(now())
+}
+
 model User {
-  id            String    @id @default(cuid())
+  id            String             @id @default(cuid())
+  username      String?
   name          String?
-  email         String?   @unique
+  password      UserPassword?
+  email         String?            @unique
   emailVerified DateTime?
-  image         String?
-  accounts      Account[]
-  sessions      Session[]
+  avatar        String?
+  avatarUrl     String?
+  bio           String?
+  theme         String?
+  metadata      Json?
+  verified      Boolean?           @default(false)
+  role          UserPermissionRole @default(USER)
+  locked        Boolean?           @default(false)
+
+  feedbacks Feedback[]
+  accounts  Account[]
+  sessions  Session[]
+  Profile   Profile[]
+
+  @@unique([username, email])
+  @@index([username])
+  @@index([emailVerified])
+  @@map(name: "users")
+}
+
+model Avatar {
+  userId String
+  // base64 string
+  data   String
+
+  @@unique([userId])
+  @@map(name: "avatars")
+}
+
+model Profile {
+  id        String   @id @default(cuid())
+  uid       String
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  username  String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@unique([userId])
+  @@index([uid])
+  @@index([userId])
+}
+
+model Feedback {
+  id      Int      @id @default(autoincrement())
+  date    DateTime @default(now())
+  userId  String
+  user    User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  rating  String
+  comment String?
+
+  @@index([userId])
+  @@index([rating])
 }
 
 model VerificationToken {
@@ -58,21 +128,21 @@ model VerificationToken {
 }
 
 model Icon {
-  id       String     @id @default(cuid())
-  label    String     @unique
-  MenuItem MenuItem[]
+  id     String   @id @default(cuid())
+  label  String   @unique
+  Folder Folder[]
 }
 
 model Subfolder {
-  id         String   @id @default(cuid())
-  label      String   @unique
-  route      String
-  menuItemId String
-  parent     MenuItem @relation(fields: [menuItemId], references: [id])
-  Post       Post[]
+  id       String @id @default(cuid())
+  label    String @unique
+  route    String
+  folderId String
+  parent   Folder @relation(fields: [folderId], references: [id])
+  Post     Post[]
 }
 
-model MenuItem {
+model Folder {
   id         String      @id @default(cuid())
   label      String      @unique
   route      String      @unique
@@ -87,8 +157,8 @@ model Post {
   title       String
   description String?    @db.Text
   content     String?    @db.Text
-  menuItemId  String?
-  menuItem    MenuItem?  @relation(fields: [menuItemId], references: [id])
+  folderId    String?
+  Folder      Folder?    @relation(fields: [folderId], references: [id])
   subfolderId String?
   subfolder   Subfolder? @relation(fields: [subfolderId], references: [id])
 }
