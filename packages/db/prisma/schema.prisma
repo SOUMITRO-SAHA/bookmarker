@@ -77,6 +77,7 @@ model User {
   accounts  Account[]
   sessions  Session[]
   Profile   Profile[]
+  Folder    Folder[]
 
   @@unique([username, email])
   @@index([username])
@@ -150,6 +151,11 @@ model Folder {
   icon       Icon        @relation(fields: [iconId], references: [id])
   subfolders Subfolder[]
   Post       Post[]
+
+  userId String
+  user   User   @relation(fields: [userId], references: [id])
+
+  @@unique([label, userId])
 }
 
 model Post {
