@@ -1,13 +1,4 @@
 /**
- * YOU PROBABLY DON'T NEED TO EDIT THIS FILE, UNLESS:
- * 1. You want to modify request context (see Part 1)
- * 2. You want to create a new middleware or type of procedure (see Part 3)
- *
- * tl;dr - this is where all the tRPC server stuff is created and plugged in.
- * The pieces you will need to use are documented accordingly near the end
- */
-
-/**
  * 1. CONTEXT
  *
  * This section defines the "contexts" that are available in the backend API
@@ -16,8 +7,8 @@
  * processing a request
  */
 import type { CreateNextContextOptions } from "@trpc/server/adapters/next";
-import type { Session } from "next-auth";
-import { getServerSession } from "./auth/get-session.js";
+import type { Session } from "@repo/auth";
+import { getServerSession } from "@repo/auth";
 import { db } from "@repo/db";
 
 // Options for creating the inner tRPC context

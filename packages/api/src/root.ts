@@ -1,10 +1,10 @@
-import { createTRPCRouter } from "./trpc.ts";
-import { authRouter } from "./router/auth.ts";
-import { userRouter } from "./router/user.ts";
+import { createTRPCRouter, publicProcedure } from "./trpc.ts";
 
 export const appRouter = createTRPCRouter({
-  user: userRouter,
-  auth: authRouter,
+  getUsers: publicProcedure.query(async ({ ctx }) => {
+    const result = await ctx.db.user.findMany();
+    return { message: "Welcome to tRPC!!!", result: result };
+  }),
 });
 
 // export type definition of API
