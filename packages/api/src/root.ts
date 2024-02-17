@@ -1,9 +1,10 @@
-import { createTRPCRouter, publicProcedure } from "./trpc.ts";
+import { createTRPCRouter, publicProcedure } from "./trpc";
 
 export const appRouter = createTRPCRouter({
-  getUsers: publicProcedure.query(async ({ ctx }) => {
-    const result = await ctx.db.user.findMany();
-    return { message: "Welcome to tRPC!!!", result: result };
+  test: publicProcedure.query(() => {
+    return {
+      message: "Testing !!! 🎉🎉🎉🎉",
+    };
   }),
 });
 

@@ -1,8 +1,4 @@
 {
-    "extends": "@repo/typescript-config/base.json",
-    "compilerOptions": {
-      "noEmit": true,
-      "allowImportingTsExtensions": true
-    },
-    "include": ["./src", "./index.ts", "./transformer.ts"]
-  }
+  "extends": "@repo/typescript-config/base.json",
+  "include": ["src", "index.ts", "transformer.ts"]
+}
