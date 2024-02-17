@@ -1,9 +1,9 @@
-import SideMenu from "@/components/SideMenu/SideMenu";
-import "../../styles/globals.css";
-
+import Sidebar from "@/components/SideBar/Sidebar";
+import { ThemeProvider } from "@/components/Theme/ThemeProvider";
+import { cn } from "@/lib/utils";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
-import { cn } from "@/lib/utils";
+import "../../styles/globals.css";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -18,16 +18,27 @@ export default function RootLayout({
   children: React.ReactNode;
 }): JSX.Element {
   return (
-    <html lang="en" className="overflow-hidden debug-screens">
+    <html
+      lang="en"
+      className="overflow-hidden debug-screens"
+      suppressHydrationWarning
+    >
       <body className={cn(inter.className)}>
-        <main className="grid grid-cols-12">
-          <section className="col-span-2">
-            <SideMenu />
-          </section>
-          <section className="col-span-10 text-white bg-slate-800">
-            {children}
-          </section>
-        </main>
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
+        >
+          <main className="grid grid-cols-12">
+            <section className="col-span-2">
+              <Sidebar />
+            </section>
+            <section className="col-span-10 dark:text-white dark:bg-slate-800">
+              {children}
+            </section>
+          </main>
+        </ThemeProvider>
       </body>
     </html>
   );

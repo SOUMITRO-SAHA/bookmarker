@@ -1,30 +1,13 @@
 import { renderHomeIcon } from "@/assets/icons.svg";
-import { MenuItem, menuItems } from "@/lib/constant";
+import { MenuItem, getIcons, menuItems } from "@/lib/constant";
 import { Avatar, AvatarFallback, AvatarImage } from "@/common/ui/avatar";
-import { LibraryBig, ListTodo, Play, Plus, Star } from "lucide-react";
+
 import { Button } from "@/common/Button";
 import { api } from "@/lib/trpc";
+import { Plus } from "lucide-react";
 interface SideMenuProps {
   //Props
 }
-
-const getIcons = (key: string) => {
-  const lowerCaseKey = key.toLowerCase();
-  switch (lowerCaseKey) {
-    case "home":
-      return renderHomeIcon();
-    case "favourite":
-      return <Star />;
-    case "videos":
-      return <Play />;
-    case "articles":
-      return <LibraryBig />;
-    case "unread":
-      return <ListTodo />;
-    default:
-      return <div className="w-4 h-4 rounded-full bg-secondary"></div>;
-  }
-};
 
 export type MenuItemsFromDB = {};
 const SideMenu = async () => {
