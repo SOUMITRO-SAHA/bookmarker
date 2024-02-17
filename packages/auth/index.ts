@@ -1,7 +1,3 @@
-export { authOptions } from "./src/auth-options";
-export { getServerSession } from "./src/get-session";
-export type { Session } from "next-auth";
-
 import type { DefaultSession } from "next-auth";
 /**
  * Module augmentation for `next-auth` types
@@ -17,3 +13,8 @@ declare module "next-auth" {
     } & DefaultSession["user"];
   }
 }
+
+export type { Session } from "next-auth";
+
+export { authOptions } from "./src/auth-options";
+export { getServerSession } from "./src/get-session";
