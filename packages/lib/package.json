@@ -1,0 +1,24 @@
+{
+  "name": "@repo/lib",
+  "version": "0.0.0",
+  "description": "This is lib library",
+  "main": "./index.ts",
+  "types": "./index.ts",
+  "license": "MIT",
+  "author": "SOUMITRA SAHA",
+  "scripts": {
+    "lint": "eslint . --ext .ts,.js,.tsx,.jsx",
+    "lint:fix": "eslint . --ext .ts,.js,.tsx,.jsx --fix",
+    "lint:report": "eslint . --format json --output-file ../../lint-results/app-store.json"
+  },
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "dayjs": "^1.11.10",
+    "tslog": "^4.9.2",
+    "uuid": "^9.0.1"
+  },
+  "devDependencies": {
+    "@repo/typescript-config": "workspace:*",
+    "typescript": "^5.3.3"
+  }
+}
