@@ -1,0 +1,1 @@
+const sendEmail = (prepare: () => BaseEmail) => {};

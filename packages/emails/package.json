@@ -1,0 +1,21 @@
+{
+  "name": "@repo/emails",
+  "version": "0.0.0",
+  "description": "This is email templates",
+  "author": "SOUMITRA SAHA",
+  "sideEffects": false,
+  "license": "MIT",
+  "main": "index.ts",
+  "scripts": {
+    "dx": "docker compose up -d || docker-compose up -d"
+  },
+  "dependencies": {
+    "@repo/lib": "workspace:*",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "rrule": "^2.8.1"
+  },
+  "devDependencies": {
+    "@repo/typescript-config": "workspace:*"
+  }
+}
