@@ -1,6 +1,8 @@
 import { createTRPCRouter, publicProcedure } from "./trpc";
+import { folderRouter } from "./router/folder";
 
 export const appRouter = createTRPCRouter({
+  folder: folderRouter,
   test: publicProcedure.query(() => {
     return {
       message: "Testing !!! 🎉🎉🎉🎉",

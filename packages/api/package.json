@@ -12,14 +12,16 @@
   "dependencies": {
     "@repo/auth": "workspace:*",
     "@repo/db": "workspace:*",
+    "@tanstack/react-query": "^4.18.0",
     "@trpc/client": "^10.45.1",
+    "@trpc/react-query": "^10.45.1",
     "@trpc/server": "^10.45.1",
     "superjson": "1.9.1",
     "zod": "^3.20.0"
   },
   "devDependencies": {
-    "@repo/typescript-config": "workspace:*",
     "@repo/eslint-config": "workspace:*",
+    "@repo/typescript-config": "workspace:*",
     "eslint": "^8.30.0",
     "typescript": "^4.9.4"
   }
