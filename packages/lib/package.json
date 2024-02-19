@@ -14,6 +14,8 @@
   "dependencies": {
     "bcryptjs": "^2.4.3",
     "dayjs": "^1.11.10",
+    "nodemailer": "^6.9.9",
+    "tsdav": "^2.0.8",
     "tslog": "^4.9.2",
     "uuid": "^9.0.1"
   },

@@ -1,5 +1,4 @@
 import { Logger } from "tslog";
-
 import { IS_PRODUCTION } from "./constants";
 
 const logger = new Logger({
@@ -14,8 +13,8 @@ const logger = new Logger({
   prettyErrorStackTemplate:
     " * {{fileName}}\t{{method}}\n\t{{filePathWithLine}}",
   prettyErrorTemplate:
-    "\n{{errorName}} {{errorMessage}}\nerror stack:\n{{errorStack}}", // default
-  prettyLogTemplate: "{{hh}}:{{MM}}:{{ss}}:{{ms}}\t{{logLevelName}}", // default with exclusion of `{{filePathWithLine}}`
+    "\n{{errorName}} {{errorMessage}}\nerror stack:\n{{errorStack}}",
+  prettyLogTemplate: "{{hh}}:{{MM}}:{{ss}}:{{ms}}\t{{logLevelName}}",
   stylePrettyLogs: true,
   prettyLogStyles: {
     name: "yellow",
