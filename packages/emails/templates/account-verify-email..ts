@@ -1,3 +1,4 @@
+import { APP_NAME } from "@repo/lib";
 import BaseEmail from "./base-email";
 
 export type EmailVerifyLink = {
@@ -20,7 +21,12 @@ export default class AccountVerifyEmail extends BaseEmail {
   protected async getNodeMailerPayload(): Promise<Record<string, unknown>> {
     return {
         to: `${this.verifyAccountInput.user.name} <${this.verifyAccountInput.user.email}>`
-        from: `${APP_NAME}`,
+        rom: `${APP_NAME} <${this.getMailerOptions().from}>`,
+      subject: this.verifyAccountInput.language("verify_email_subject", {
+        appName: APP_NAME,
+      }),
+      html: await renderEmail("VerifyAccountEmail", this.verifyAccountInput),
+      text: this.getTextBody(),
     }
   }
 }
