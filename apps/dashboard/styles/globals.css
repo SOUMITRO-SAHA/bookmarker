@@ -1,5 +1,91 @@
-@import "@repo/tailwind-config/styles.css";
 @import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,400;0,500;0,600;1,100;1,200;1,400;1,500;1,600&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Background Colors */
+    --background: #ffffff;
+    --foreground: #0f172a;
+
+    /* Primary Colors */
+    --primary: #0f172a;
+    --primary-foreground: #f8fafc;
+
+    /* Secondary Colors */
+    --secondary: #f1f5f9;
+    --secondary-foreground: #0f172a;
+
+    --muted: #f1f5f9;
+    --muted-foreground: #64748b;
+
+    --popover: #ffffff;
+    --popover-foreground: #0f172a;
+
+    /* Border */
+    --border: #e2e8f0;
+    --input: #e2e8f0;
+
+    --card: #ffffff;
+    --card-foreground: #0f172a;
+
+    --accent: #f1f5f9;
+    --accent-foreground: #0f172a;
+
+    /* Destructive Color */
+    --destructive: #ff0000;
+    --destructive-foreground: #f8fafc;
+
+    --ring: #94a3b8;
+
+    --radius: 0.5rem;
+  }
+  /* For Dark Mode */
+  .dark {
+    /* Background */
+    --background: #101010;
+    --background-muted: #1f1f1f;
+    --background-error: #772522;
+    --foreground: #e1e7ef;
+
+    --muted: #575757;
+    --muted-foreground: #7f8ea3;
+
+    --accent: #1d283a;
+    --accent-foreground: #f8fafc;
+
+    --popover: #1a1a1a;
+    --popover-foreground: #94a3b8;
+
+    --border: #575757;
+    --border-subtle: #383838;
+    --input: #575757;
+
+    --card: #1a1a1a;
+    --card-foreground: #e1e7ef;
+
+    --primary: #f8fafc;
+    --primary-foreground: #020205;
+
+    --secondary: #0f172a;
+    --secondary-foreground: #f8fafc;
+
+    /* Text */
+    --text-primary: #fcfcfd;
+    --text-subtle: #a6a6a6;
+    --text-emphasis: #fcfcfd;
+
+    /* Destructive */
+    --destructive: #811d1d;
+    --destructive-foreground: #f8fafc;
+
+    --ring: #f8fafc;
+
+    --radius: 0.5rem;
+  }
+}
 
 @layer base {
   * {
@@ -13,10 +99,9 @@
   }
 
   .divider {
-    margin-top: 4px;
-    height: 1.25px;
+    margin: 1rem 0;
     width: 100%;
-    border-radius: 50%;
-    @apply bg-gray-700;
+    height: 1px;
+    background: var(--border);
   }
 }
