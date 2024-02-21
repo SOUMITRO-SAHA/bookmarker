@@ -1,0 +1,12 @@
+{
+  "identity_provider": "Identify Provider",
+  "getting_started": "Getting Started",
+  "register_now": "Register now",
+  "register": "Register",
+  "page_doesnt_exist": "This page does not exist.",
+  "check_spelling_mistakes_or_go_back": "Check for spelling mistakes or go back to the previous page.",
+  "404_page_not_found": "404: This page could not be found.",
+  "already_have_an_account": "Already have an account?",
+  "create_account": "Create Account",
+  "confirm_password": "Confirm password"
+}
