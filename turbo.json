@@ -1,6 +1,16 @@
 {
   "$schema": "https://turbo.build/schema.json",
-  "globalDependencies": ["**/.env.*local"],
+  "globalDependencies": ["**/.env.*local", "./pnpm-lock.yaml"],
+  "globalEnv": [
+    "DATABASE_URL",
+    "NEXTAUTH_URL",
+    "NEXT_PUBLIC_COMPANY_NAME",
+    "NEXT_PUBLIC_WEBSITE_URL",
+    "NEXT_PUBLIC_SUPPORT_MAIL_ADDRESS",
+    "NEXT_PUBLIC_SENDER_ID",
+    "NEXT_PUBLIC_SENDGRID_SENDER_NAME",
+    "NEXTAUTH_SECRET"
+  ],
   "pipeline": {
     "build": {
       "dependsOn": ["^build"],
@@ -12,6 +22,12 @@
     "dev": {
       "cache": false,
       "persistent": true
+    },
+    "type-check": {
+      "cache": false
+    },
+    "test": {
+      "cache": false
     }
   }
 }
