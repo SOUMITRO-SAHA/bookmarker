@@ -403,6 +403,9 @@ importers:
 
   packages/lib:
     dependencies:
+      '@repo/db':
+        specifier: workspace:*
+        version: link:../db
       bcryptjs:
         specifier: ^2.4.3
         version: 2.4.3
