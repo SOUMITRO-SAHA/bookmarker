@@ -2,22 +2,44 @@
   "name": "@repo/db",
   "version": "0.0.0",
   "description": "",
+  "type": "module",
   "main": "./index.ts",
-  "types": "./index.ts",
+  "types": "index.d.ts",
+  "files": [
+    "client",
+    "zod",
+    "zod-utils.ts"
+  ],
+  "prisma": {
+    "seed": "ts-node --transplile-only ./seed.ts"
+  },
   "scripts": {
     "clean": "rm -rf .turbo node_modules",
     "db:studio": "pnpm with-env prisma studio",
     "db:generate": "pnpm with-env prisma generate",
     "db:push": "pnpm with-env prisma db push --skip-generate",
     "db": "pnpm with-env prisma studio --port 5556",
+    "db:migrate": "pnpm prisma migrate dev",
+    "db:seed": "pnpm prisma db seed",
+    "db:setup": "run-s db-up db-deploy db-seed",
+    "db-up": "docker compose up -d || docker-compose up -d",
+    "generate-schemas": "prisma generate && prisma format",
+    "db-deploy": "yarn prisma migrate deploy",
+    "post-install": "pnpm generate-schemas",
     "with-env": "dotenv -e ../../.env --"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@repo/lib": "workspace:*",
     "@prisma/client": "^5.9.1",
-    "prisma": "^5.9.1"
+    "@prisma/extension-accelerate": "^0.6.3",
+    "@prisma/generator-helper": "^5.10.1",
+    "prisma": "^5.9.1",
+    "ts-node": "^10.9.2",
+    "zod": "^3.20.0",
+    "zod-prisma": "^0.5.4"
   },
   "devDependencies": {
     "dotenv-cli": "^7.3.0",
