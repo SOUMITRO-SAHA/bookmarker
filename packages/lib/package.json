@@ -2,6 +2,7 @@
   "name": "@repo/lib",
   "version": "0.0.0",
   "description": "This is lib library",
+  "type": "module",
   "main": "./index.ts",
   "types": "./index.ts",
   "license": "MIT",
@@ -12,15 +13,18 @@
     "lint:report": "eslint . --format json --output-file ../../lint-results/app-store.json"
   },
   "dependencies": {
+    "@repo/db": "workspace:*",
     "bcryptjs": "^2.4.3",
     "dayjs": "^1.11.10",
     "nodemailer": "^6.9.9",
+    "react": "^18.2.0",
     "tsdav": "^2.0.8",
     "tslog": "^4.9.2",
     "uuid": "^9.0.1"
   },
   "devDependencies": {
     "@repo/typescript-config": "workspace:*",
+    "@types/react": "^18.2.46",
     "typescript": "^5.3.3"
   }
 }
