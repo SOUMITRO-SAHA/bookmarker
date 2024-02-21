@@ -1,14 +1,12 @@
-"use client";
-
 import { Button } from "@/common/Button";
 import { ArrowLeft } from "lucide-react";
 import React from "react";
 
-interface errorProps {
+interface Custom404Props {
   //Props
 }
 
-const error: React.FC<errorProps> = () => {
+const Custom404: React.FC<Custom404Props> = () => {
   return (
     <main className="bg-background">
       <div className="uppercase">Error 404</div>
@@ -24,4 +22,4 @@ const error: React.FC<errorProps> = () => {
   );
 };
 
-export default error;
+export default Custom404;
