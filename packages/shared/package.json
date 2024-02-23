@@ -1,0 +1,20 @@
+{
+  "name": "@repo/shared",
+  "version": "0.0.0",
+  "main": "index.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "SOUMITRA SAHA",
+  "description": "This folder contains all the files that are constants, common, schemas, types and so on.",
+  "license": "ISC",
+  "dependencies": {
+    "zod": "^3.20.0"
+  },
+  "devDependencies": {
+    "@repo/typescript-config": "workspace:*",
+    "@repo/eslint-config": "workspace:*",
+    "typescript": "^5.3.3"
+  }
+}

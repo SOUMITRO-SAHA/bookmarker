@@ -1,0 +1,12 @@
+{
+    "extends": "@repo/typescript-config/base.json",
+    "compilerOptions": {
+      "target": "es5",
+      "jsx": "preserve",
+      "resolveJsonModule": true,
+      "esModuleInterop": true,
+      "allowSyntheticDefaultImports": true
+    },
+    "include": [".", "../types/next-auth.d.ts"],
+    "exclude": ["dist", "build", "node_modules"]
+  }
