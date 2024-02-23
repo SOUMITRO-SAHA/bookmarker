@@ -10,6 +10,13 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+generator zod {
+  provider      = "zod-prisma"
+  output        = "../zod"
+  imports       = "../zod-utils"
+  relationModel = "default"
+}
+
 // Enums
 enum UserPermissionRole {
   USER
