@@ -1,5 +1,5 @@
 import jwt, { Secret } from "jsonwebtoken";
-import { NEXTAUTH_SECRET } from "../constants.js";
+import { NEXTAUTH_SECRET } from "../constants";
 
 export async function createNewToken(userInfo: any) {
   const token = jwt.sign(

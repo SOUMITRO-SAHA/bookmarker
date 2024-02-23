@@ -1,8 +1,8 @@
-export * from "./constants.js";
-export * from "./logger.js";
+export * from "./constants";
+export * from "./logger";
 // CORS
-export * from "./CORE/isPrismaObject.js";
-export * from "./CORE/safeStringify.js";
-export * from "./CORE/comparePassword.js";
-export * from "./CORE/encryptPassword.js";
-export * from "./CORE/token.js";
+export * from "./CORE/isPrismaObject";
+export * from "./CORE/safeStringify";
+export * from "./CORE/comparePassword";
+export * from "./CORE/encryptPassword";
+export * from "./CORE/token";

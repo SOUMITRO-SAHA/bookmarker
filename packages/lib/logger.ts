@@ -1,5 +1,5 @@
 import { Logger, ILogObj } from "tslog";
-import { IS_PRODUCTION } from "./constants.js";
+import { IS_PRODUCTION } from "./constants";
 
 export const logger: Logger<ILogObj> = new Logger({
   minLevel: !!process.env.NEXT_PUBLIC_DEBUG ? 2 : 4,
