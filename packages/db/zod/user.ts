@@ -1,6 +1,6 @@
 import * as z from "zod"
 import * as imports from "../zod-utils"
-import { UserPermissionRole } from "@prisma/client"
+import { UserPermissionRole, IdentityProvider } from "@prisma/client"
 import { CompleteUserPassword, UserPasswordModel, CompleteFeedback, FeedbackModel, CompleteAccount, AccountModel, CompleteSession, SessionModel, CompleteProfile, ProfileModel, CompleteFolder, FolderModel } from "./index"
 
 // Helper schema for JSON fields
@@ -23,6 +23,8 @@ export const _UserModel = z.object({
   verified: z.boolean().nullish(),
   role: z.nativeEnum(UserPermissionRole),
   locked: z.boolean().nullish(),
+  identityProvider: z.nativeEnum(IdentityProvider),
+  identityProviderId: z.string().nullish(),
 })
 
 export interface CompleteUser extends z.infer<typeof _UserModel> {
