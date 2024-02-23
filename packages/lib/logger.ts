@@ -1,7 +1,7 @@
 import { Logger, ILogObj } from "tslog";
 import { IS_PRODUCTION } from "./constants.js";
 
-const logger: Logger<ILogObj> = new Logger({
+export const logger: Logger<ILogObj> = new Logger({
   minLevel: !!process.env.NEXT_PUBLIC_DEBUG ? 2 : 4,
   maskValuesOfKeys: [
     "password",
@@ -21,5 +21,3 @@ const logger: Logger<ILogObj> = new Logger({
     dateIsoStr: "blue",
   },
 });
-
-export default logger;

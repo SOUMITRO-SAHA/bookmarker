@@ -29,3 +29,7 @@ export const ANDROID_CHROME_ICON_256 = "/android-chrome-256x256.png";
 export const ROADMAP = "";
 export const DESKTOP_APP_LINK = "";
 export const JOIN_DISCORD = "";
+
+// Config
+export const NEXTAUTH_SECRET = process.env.NEXTAUTH_SECRET;
+export const NEXTAUTH_EXPIRY = process.env.NEXTAUTH_EXPIRY;
