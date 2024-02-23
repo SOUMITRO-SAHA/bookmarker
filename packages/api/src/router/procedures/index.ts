@@ -1,5 +1,5 @@
-import { mergeRouters, router } from "../../trpc.js";
-import { authRouter } from "../auth.js";
+import { mergeRouters, router } from "../../trpc";
+import { authRouter } from "./auth/__router";
 
 export const procedures = mergeRouters(
   router({

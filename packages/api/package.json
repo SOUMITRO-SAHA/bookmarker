@@ -10,7 +10,6 @@
     "type-check": "tsc --noEmit"
   },
   "dependencies": {
-    "@repo/auth": "workspace:*",
     "@repo/db": "workspace:*",
     "@repo/lib": "workspace:*",
     "@tanstack/react-query": "^4.18.0",
