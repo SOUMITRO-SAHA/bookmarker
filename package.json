@@ -1,7 +1,6 @@
 {
   "name": "bookmarker",
   "private": true,
-  "type": "module",
   "scripts": {
     "tdd": "vitest watch",
     "test": "vitest run",
