@@ -19,10 +19,14 @@
 import { type CreateNextContextOptions } from "@trpc/server/adapters/next";
 import type { Session } from "@repo/auth";
 import { getServerSession } from "@repo/auth";
-import { db } from "@repo/db";
+import { db, PrismaClient } from "@repo/db";
 
-type CreateContextOptions = {
+export type CreateContextOptions = {
   session: Session | null;
+};
+export type CreateInnerTRPCContex = {
+  db: PrismaClient;
+  session: CreateContextOptions;
 };
 
 /**
@@ -34,7 +38,7 @@ type CreateContextOptions = {
  * - trpc's `createSSGHelpers` where we don't have req/res
  * @see https://create.t3.gg/en/usage/trpc#-servertrpccontextts
  */
-const createInnerTRPCContext = (opts: CreateContextOptions) => {
+export const createInnerTRPCContext = (opts: CreateContextOptions) => {
   return {
     session: opts.session,
     db,
@@ -121,3 +125,8 @@ const enforceUserIsAuthed = t.middleware(({ ctx, next }) => {
  * @see https://trpc.io/docs/procedures
  */
 export const protectedProcedure = t.procedure.use(enforceUserIsAuthed);
+
+export const router = t.router;
+export const mergeRouters = t.mergeRouters;
+export const middleware = t.middleware;
+export const procedure = t.procedure;
