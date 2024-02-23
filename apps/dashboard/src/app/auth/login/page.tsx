@@ -3,9 +3,12 @@ import { Button } from "@/common/Button";
 import { InputField } from "@/common/Input/InputField";
 import { PasswordField } from "@/common/Input/PasswordField";
 import { cn } from "@/lib/utils";
+import { zodResolver } from "@hookform/resolvers/zod";
 import { signupSchema } from "@repo/db/zod-utils";
+import { signIn } from "next-auth/react";
 import Link from "next/link";
 import * as React from "react";
+import { useForm } from "react-hook-form";
 import { FaGoogle, FaInstagram } from "react-icons/fa6";
 import z from "zod";
 
@@ -24,13 +27,37 @@ const formDataInitialState = {
   password: "",
 };
 
+interface LoginValues {
+  email: string;
+  password: string;
+  totpCode: string;
+  backupCode: string;
+  csrfToken: string;
+}
+
 const page: React.FC<pageProps> = () => {
-  const [formData, setFormData] = React.useState(formDataInitialState);
+  const formSchema = z
+    .object({
+      email: z
+        .string()
+        .min(1, "error_required_field")
+        .email("enter_valid_email"),
+      password: z.string().min(1, "error_required_field"),
+    })
+    // Passthrough other fields like totpCode
+    .passthrough();
+
+  const methods = useForm<LoginValues>({ resolver: zodResolver(formSchema) });
+  const { register, formState } = methods;
+  const [twoFactorRequired, setTwoFactorRequired] = React.useState(false);
+  const [twoFactorLostAccess, setTwoFactorLostAccess] = React.useState(false);
+  const [errorMessage, setErrorMessage] = React.useState<string | null>(null);
 
   // Function
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
   };
+
   // Side Effect
 
   return (
@@ -73,6 +100,10 @@ const page: React.FC<pageProps> = () => {
             variant="outline"
             size={"lg"}
             className={cn("flex w-full items-center gap-2")}
+            onClick={async (e) => {
+              e.preventDefault();
+              await signIn("google");
+            }}
           >
             <FaGoogle />
             <span>Sign in with Google</span>
