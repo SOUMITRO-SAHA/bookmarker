@@ -1,9 +1,7 @@
+import { PrismaAdapter } from "@next-auth/prisma-adapter";
+import { db } from "@repo/db";
 import type { NextAuthOptions } from "next-auth";
 import DiscordProvider from "next-auth/providers/discord";
-
-import { db } from "@repo/db";
-import { PrismaAdapter } from "@next-auth/prisma-adapter";
-import { WEBAPP_URL } from "@repo/lib";
 
 export function isNumber(n: string) {
   return !isNaN(parseFloat(n)) && !isNaN(+n);
@@ -24,7 +22,7 @@ export const authOptions: NextAuthOptions = {
     }),
   ],
   pages: {
-    signIn: "/auth/sign-in",
+    signIn: "/auth/login" || "/auth/signup",
     signOut: "/auth/sign-out",
     error: "/auth/error",
     verifyRequest: "/auth/verify-request",
