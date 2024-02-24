@@ -25,6 +25,7 @@ interface ExamplesProps {
   title: string;
   footnote?: React.ReactNode;
   dark?: boolean;
+  className?: string;
 }
 
 export const Examples = ({
@@ -32,9 +33,10 @@ export const Examples = ({
   title,
   footnote = null,
   dark,
+  className,
 }: ExamplesProps) => {
   return (
-    <div className={cn("examples", dark && "dark")}>
+    <div className={cn("examples", dark && "dark", className)}>
       <h2 className="examples-title">{title}</h2>
       <div className="examples-content">{children}</div>
       {!!footnote && <div className="examples-footnote">{footnote}</div>}

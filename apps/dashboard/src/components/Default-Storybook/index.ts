@@ -1,4 +1,4 @@
-import "./storybook.style.css";
+import "../../../styles/storybook.style.css";
 export * from "./Examples";
 export * from "./Note";
 export * from "./VariantsTable";
