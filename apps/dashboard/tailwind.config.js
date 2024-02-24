@@ -41,7 +41,7 @@ module.exports = {
           foreground: "var(--destructive-foreground)",
         },
         muted: {
-          DEFAULT: "var(--muted)",
+          DEFAULT: "var(--bg-muted)",
           foreground: "var(--muted-foreground)",
         },
         accent: {
@@ -59,7 +59,6 @@ module.exports = {
         emphasis: "var(--bg-emphasis)",
         default: "var(--bg, white)",
         subtle: "var(--bg-subtle)",
-        muted: "var(--bg-muted)",
         inverted: "var(--bg-inverted)",
         info: "var(--bg-info)",
         success: "var(--bg-success)",
@@ -101,9 +100,7 @@ module.exports = {
       textColor: {
         DEFAULT: "var(--text, #374151)",
         primary: "var(--text-primary)",
-        subtle: "var(--text-subtile)",
         emphasis: "var(--text-emphasis, #111827)",
-        subtle: "var(--text-subtle, #6B7280)",
         muted: "var(--text-muted, #9CA3AF)",
         inverted: "var(--text-inverted, white)",
         info: "var(--text-info, #253985)",
