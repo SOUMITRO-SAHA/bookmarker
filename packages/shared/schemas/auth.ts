@@ -22,3 +22,5 @@ export const RegisterSchema = z.object({
   }),
   password: PasswordSchema,
 });
+
+export const FormSchema = LoginSchema || RegisterSchema;
