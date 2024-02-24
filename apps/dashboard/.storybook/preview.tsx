@@ -1,7 +1,7 @@
 import * as React from "react";
 import "../styles/globals.css";
 import type { Preview } from "@storybook/react";
-import { TooltipProvider } from "@radix-ui/react-tooltip";
+import { TooltipProvider } from "../src/common/ui/tooltip";
 
 const preview: Preview = {
   parameters: {
