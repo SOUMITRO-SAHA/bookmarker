@@ -1,0 +1,116 @@
+import { Home, MoveRight } from "lucide-react";
+import { TooltipProvider } from "@radix-ui/react-tooltip";
+import { Canvas, Meta, Story, ArgsTable } from "@storybook/addon-docs";
+
+import {
+  Example,
+  Examples,
+  Note,
+  Title,
+  VariantsTable,
+  VariantColumn,
+  RowTitles,
+  CustomArgsTable,
+  VariantRow,
+} from "@/components/Default-Storybook";
+
+import { Button } from "@/common/Button";
+
+<Meta title="UI/Button" component={Button} />
+
+<Title title="Buttons" subtitle="Version 0.0.1 - Last Update: 24 Feb 2024" />
+
+# Definition
+
+Button are clickable elements that initiats user actions.
+
+# Structure
+
+<CustomArgsTable of={Button} />
+
+<Examples
+  title="Button style"
+  footnote={
+    <ul>
+      <li>
+        <strong>Primary:</strong> This is the default style, emphasizing the
+        primary action.
+      </li>
+      <li>
+        <strong>Secondary:</strong> This is the secondary style, often used for
+        lighter actions or less prominent options.
+      </li>
+      <li>
+        <strong>Outline:</strong> This button has only an outline, providing a
+        subtle appearance without a filled background.
+      </li>
+      <li>
+        <strong>Destructive:</strong> This style indicates an action that is
+        potentially harmful or for deletion purposes.
+      </li>
+      <li>
+        <strong>Ghost:</strong> This button has no visible background or
+        borders, appearing as a subtle option within the interface.
+      </li>
+      <li>
+        <strong>Link:</strong> While styled as a button, this option resembles a
+        hyperlink, blending seamlessly into text or navigation elements.
+      </li>
+    </ul>
+  }
+>
+  <Example title="Primary">
+    <Button>Button Text</Button>
+  </Example>
+  <Example title="Secondary">
+    <Button variant="secondary">Button Text</Button>
+  </Example>
+  <Example title="Outline">
+    <Button variant="outline">Button Text</Button>
+  </Example>
+  <Example title="Destructive">
+    <Button variant="destructive">Button Text</Button>
+  </Example>
+  <Example title="Ghost">
+    <Button variant="ghost">Button Text</Button>
+  </Example>
+  <Example title="Link">
+    <Button variant="link">Button Text</Button>
+  </Example>
+</Examples>
+
+<Examples title="Icons">
+  <Example title="Icon Prefix">
+    <Button prefixIcon={<Home className="w-4 h-4" />}>Dashboard</Button>
+  </Example>
+  <Example title="Icon Suffix">
+    <Button suffixIcon={<MoveRight className="w-4 h-4" />}>Next</Button>
+  </Example>
+</Examples>
+
+<Examples title="State">
+  <Example title="Default">
+    <Button>Button text</Button>
+  </Example>
+  <Example title="Disabled">
+    <Button disabled>Button text</Button>
+  </Example>
+  <Example title="Loading">
+    <Button loading>Button text</Button>
+  </Example>
+</Examples>
+
+<Examples title="Size">
+  <Example title="Default">
+    <Button>Button text</Button>
+  </Example>
+  <Example title="sm">
+    <Button size={"sm"}>Button text</Button>
+  </Example>
+  <Example title="lg">
+    <Button size={"lg"}>Button text</Button>
+  </Example>
+  <Example title="icon">
+    <Button size={"icon"}>X</Button>
+  </Example>
+</Examples>
