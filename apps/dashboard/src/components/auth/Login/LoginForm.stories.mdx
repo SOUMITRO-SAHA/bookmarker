@@ -1,0 +1,20 @@
+import {Canvas, Meta, Story} from "@storybook/addon-docs"
+import LoginForm from "./LoginForm.tsx"
+import {Title, CustomArgsTable, Example, Examples} from "@/components/Default-Storybook"
+
+<Meta title="UI/Form/Login" components={LoginForm}/>
+<Title title="Login Form" subtitle="Version 0.0.1 - Last Updated: 24 Feb 2024"/>
+
+<Examples>
+    <Example>
+        <div className="h-full w-full flex justify-center items-center">
+            <div className="w-[60%] my-6">
+                <LoginForm/>
+            </div>
+        </div>
+    </Example>
+</Examples>
+
+## Usage
+
+This form is used in the Login Page
