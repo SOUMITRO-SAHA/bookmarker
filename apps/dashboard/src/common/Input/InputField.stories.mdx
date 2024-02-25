@@ -1,0 +1,33 @@
+import { TooltipProvider } from "@radix-ui/react-tooltip";
+import { Canvas, Meta, Story, ArgsTable } from "@storybook/addon-docs";
+
+import {
+  Example,
+  Examples,
+  Note,
+  Title,
+  VariantsTable,
+  VariantColumn,
+  RowTitles,
+  CustomArgsTable,
+  VariantRow,
+} from "@/components/Default-Storybook";
+
+import { InputField } from "./InputField";
+
+<Meta title="UI/Input/InputField" component={InputField} />
+
+<Title
+  title="Input Field"
+  subtitle="Version 0.0.1 - Last Updated: 25 Feb 2024"
+/>
+
+# Definition
+
+This is Custom Input Fields
+
+<Examples title="Input Field">
+  <Example>
+    <InputField placeholder="Placeholder..." />
+  </Example>
+</Examples>
