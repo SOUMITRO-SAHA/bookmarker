@@ -11,14 +11,14 @@ const buttonVariants = cva(
       variant: {
         default:
           "bg-primary text-inverted shadow hover:bg-inverted active:ring-inverted",
-        destructive:
-          "bg-destructive text-destructive-foreground shadow-sm hover:bg-destructive/90 active:ring-secondary",
-        outline:
-          "border border-input bg-background shadow-sm hover:bg-accent hover:text-accent-foreground",
         secondary:
-          "bg-secondary text-secondary-foreground shadow-sm hover:bg-secondary/80",
-        ghost: "hover:bg-accent",
-        link: "text-primary underline-offset-4 hover:underline",
+          "bg-secondary text-secondary-foreground shadow-sm hover:bg-secondary/80 dark:hover:bg-primary/80 disabled:shadow-sm",
+        outline:
+          "border border-border bg-bg dark:text-emphasis shadow-sm hover:bg-accent hover:text-accent-foreground",
+        destructive:
+          "bg-destructive dark:bg-attention text-destructive-foreground shadow-sm hover:bg-destructive/90 active:ring-secondary",
+        ghost: "hover:bg-accent text",
+        link: "text underline-offset-4 hover:underline",
       },
       size: {
         default: "h-9 px-4 py-2",
@@ -68,7 +68,7 @@ const Button = React.forwardRef<
       disabled={disabled}
     >
       {loading ? (
-        <div className="flex items-center justify-center gap-2">
+        <div className="flex items-center justify-center w-full gap-2">
           <Loader size={15} color={variant === "default" ? "#556671" : ""} />
           <span aria-disabled>{props.children}</span>
         </div>

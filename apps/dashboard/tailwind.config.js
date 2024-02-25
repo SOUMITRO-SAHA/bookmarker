@@ -24,8 +24,16 @@ module.exports = {
         ring: "var(--ring)",
         background: {
           DEFAULT: "var(--background)",
-          muted: "var(--background-muted)",
-          error: "var(--background-error)",
+          bg: "var(--bg)",
+          muted: "var(--bg-muted)",
+          error: "var(--bg-error)",
+          emphasis: "var(--bg-emphasis)",
+          subtle: "var(--bg-subtle)",
+          inverted: "var(--bg-inverted)",
+          info: "var(--bg-info)",
+          success: "var(--bg-success)",
+          attention: "var(--bg-attention)",
+          "dark-error": "var(--bg-dark-error)",
         },
         foreground: "var(--foreground)",
         primary: {

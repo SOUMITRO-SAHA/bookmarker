@@ -115,9 +115,11 @@
     --card: #1a1a1a;
     --card-foreground: #e1e7ef;
 
+    /* Primary */
     --primary: #f8fafc;
     --primary-foreground: #020205;
 
+    /* Secondary */
     --secondary: #0f172a;
     --secondary-foreground: #f8fafc;
 

@@ -1,4 +1,4 @@
-import { Home, MoveRight } from "lucide-react";
+import { Home, MoveRight, X } from "lucide-react";
 import { TooltipProvider } from "@radix-ui/react-tooltip";
 import { Canvas, Meta, Story, ArgsTable } from "@storybook/addon-docs";
 
@@ -114,3 +114,95 @@ Button are clickable elements that initiats user actions.
     <Button size={"icon"}>X</Button>
   </Example>
 </Examples>
+
+## Anatomy
+
+Button are clickable elementes that initiates user actions. Labels in the button guide users to what action will occur when the user interacts with it.
+
+## Usage
+
+<Note>
+  In general, there should be only one Primary button in any application context
+</Note>
+<Note>
+  Aim to use maximum 2 words for the button label. Button size can be flexible
+  based on the visual hierarchy and devices.
+</Note>
+<Note>
+  Hover state variant for Mobile button is an option for assistive device.
+</Note>
+
+<Title offset title="Buttons" suffix="Variants" />
+
+<Canvas>
+  <Story name="All variants">
+    <VariantsTable
+      titles={[
+        "Primary",
+        "Secondary",
+        "Outline",
+        "Destructive",
+        "Ghost",
+        "Link",
+        "Icon",
+      ]}
+      columnMinWidth={150}
+    >
+      <VariantRow variant="Default">
+        <Button>Button text</Button>
+        <Button variant="secondary">Button text</Button>
+        <Button variant="outline">Button text</Button>
+        <Button variant="destructive">Button text</Button>
+        <Button variant="ghost">Button text</Button>
+        <Button variant="link">Button text</Button>
+        <Button size="icon" suffixIcon={<X className="w-4 h-4" />}></Button>
+      </VariantRow>
+      <VariantRow variant="Loading">
+        <Button loading>Button text</Button>
+        <Button loading variant="secondary">
+          Button text
+        </Button>
+        <Button loading variant="outline">
+          Button text
+        </Button>
+        <Button loading variant="destructive">
+          Button text
+        </Button>
+        <Button loading variant="ghost">
+          Button text
+        </Button>
+        <Button loading variant="link">
+          Button text
+        </Button>
+        <Button
+          loading
+          size="icon"
+          suffixIcon={<X className="w-4 h-4" />}
+        ></Button>
+      </VariantRow>
+      <VariantRow variant="Disabled">
+        <Button disabled>Button text</Button>
+        <Button disabled variant="secondary">
+          Button text
+        </Button>
+        <Button disabled variant="minimal">
+          Button text
+        </Button>
+        <Button disabled variant="destructive">
+          Button text
+        </Button>
+        <Button disabled variant="ghost">
+          Button text
+        </Button>
+        <Button disabled variant="link">
+          Button text
+        </Button>
+        <Button
+          disabled
+          size="icon"
+          suffixIcon={<X className="w-4 h-4" />}
+        ></Button>
+      </VariantRow>
+    </VariantsTable>
+  </Story>
+</Canvas>
