@@ -31,17 +31,18 @@ export const PasswordField = React.forwardRef<
       addOnSuffix={
         <Tooltip content={textLabel}>
           <Button
-            className="w-6 h-10 p-1 text-emphasis"
+            asDiv
+            className="flex items-center justify-center w-6 h-10 p-1 cursor-pointer text-emphasis"
             variant={"ghost"}
             onClick={() => toggleIsPasswordVisible()}
-          >
-            {isPasswordVisible ? (
-              <EyeOff className="h-4 stroke-[2.5px]" />
-            ) : (
-              <Eye className="h-4 stroke-[2.5px]" />
-            )}
-            <span className="sr-only">{textLabel}</span>
-          </Button>
+            suffixIcon={
+              isPasswordVisible ? (
+                <EyeOff className="h-4 stroke-[2.5px]" />
+              ) : (
+                <Eye className="h-4 stroke-[2.5px]" />
+              )
+            }
+          ></Button>
         </Tooltip>
       }
     />
