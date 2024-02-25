@@ -109,6 +109,7 @@ module.exports = {
         DEFAULT: "var(--text, #374151)",
         primary: "var(--text-primary)",
         emphasis: "var(--text-emphasis, #111827)",
+        subtle: "var(--text-subtle)",
         muted: "var(--text-muted, #9CA3AF)",
         inverted: "var(--text-inverted, white)",
         info: "var(--text-info, #253985)",
