@@ -76,8 +76,8 @@ const Button = React.forwardRef<
         <div
           className={cn(
             "flex items-center justify-center",
-            prefixIcon ? "gap-2" : "",
-            suffixIcon ? "gap-2" : ""
+            prefixIcon && props.children ? "gap-2" : "",
+            suffixIcon && props.children ? "gap-2" : ""
           )}
         >
           {prefixIcon && <>{prefixIcon}</>}
