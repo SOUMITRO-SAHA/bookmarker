@@ -5,11 +5,9 @@ import { PasswordField } from "@/common/Input/PasswordField";
 import {
   Form,
   FormControl,
-  FormDescription,
   FormField,
   FormItem,
   FormLabel,
-  FormMessage,
 } from "@/common/ui/form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { LoginSchema } from "@repo/shared";
@@ -31,9 +29,8 @@ const LoginForm: React.FC<LoginFormProps> = () => {
   });
 
   function onSubmit(values: z.infer<typeof LoginSchema>) {
-    // Do something with the form values.
-    // ✅ This will be type-safe and validated.
-    console.log(values);
+    const { email, password } = values;
+    // TODO: Now send this to the Next-Auth
   }
 
   return (
