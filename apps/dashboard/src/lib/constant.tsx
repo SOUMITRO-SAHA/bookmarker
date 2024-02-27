@@ -6,6 +6,7 @@ export const userDetails = {
   email: "soumitrosahaofficial@gmail.com",
   membership: "FREE",
   lastOnline: "2 hours ago",
+  imageURL: "",
 };
 
 export type MenuItem = {
