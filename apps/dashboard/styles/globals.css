@@ -105,7 +105,7 @@
     --border: #d1d5db;
     --border-emphasis: #757575;
     --border: #575757;
-    --border-subtle: #383838;
+    --border-subtle: #868686;
     --border-booker: #383838;
     --border-muted: #2e2e2e;
     --border-error: #aa2f27;
@@ -126,7 +126,7 @@
     /* Text */
     --text-emphasis: #fcfcfd;
     --text: #d6d6d6;
-    --text-subtle: #a6a6a6;
+    --text-subtle: #868686;
     --text-muted: #575757;
     --text-inverted: #1a1a1a;
     --text-info: #dee9fc;
