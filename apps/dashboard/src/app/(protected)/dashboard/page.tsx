@@ -1,11 +1,11 @@
 import React from "react";
 
-interface pageProps {
+interface DashboardPageProps {
   //Props
 }
 
-const page: React.FC<pageProps> = () => {
-  return <div>page</div>;
+const DashboardPage: React.FC<DashboardPageProps> = () => {
+  return <div>DashboardPage</div>;
 };
 
-export default page;
+export default DashboardPage;
