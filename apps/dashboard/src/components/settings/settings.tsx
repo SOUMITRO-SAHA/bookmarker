@@ -22,15 +22,18 @@ export const SettingSideBarItemGroup = ({
 export const SettingSideBarItem = ({
   children,
   className,
+  isActive,
 }: {
   children: React.ReactNode;
   className?: string;
+  isActive?: boolean;
 }) => {
   return (
     <div
       className={cn(
-        "p-2 px-3 my-1 text-sm rounded cursor-pointer hover:bg-subtle",
-        className
+        "p-2 px-3 my-1 text-sm rounded cursor-pointer ",
+        className,
+        isActive ? "bg-muted" : "hover:bg-subtle"
       )}
     >
       {children}
