@@ -1,5 +1,19 @@
 import { renderHomeIcon } from "@/assets/icons.svg";
-import { LibraryBig, ListTodo, Play, Plus, Star } from "lucide-react";
+import {
+  ArrowDownToLine,
+  ArrowUpCircle,
+  ArrowUpRightSquare,
+  BellDot,
+  CircleUserRound,
+  LibraryBig,
+  ListTodo,
+  Play,
+  Plus,
+  Settings,
+  SlidersHorizontal,
+  Star,
+} from "lucide-react";
+import { cn } from "./utils";
 
 export const userDetails = {
   username: "Soumitra Saha",
@@ -61,6 +75,80 @@ export const menuItems: MenuItem[] = [
   },
   { id: 6, label: "Unread", route: "/unread", subfolders: null },
 ];
+
+export type Group = "Accounts" | "Workspaces";
+
+export type SettingsMenuItem = {
+  id: number;
+  label: string;
+  route: string;
+  icon: (className: string) => React.ReactNode;
+};
+
+export type SettingsMenuGroup = {
+  key: Group;
+  items: SettingsMenuItem[];
+};
+export const settingsMenuItems: Record<Group, SettingsMenuItem[]> = {
+  Accounts: [
+    {
+      id: 1,
+      label: "My Account",
+      route: "/settings/accounts",
+
+      icon: (className: string) => (
+        <CircleUserRound className={cn(className)} />
+      ),
+    },
+    {
+      id: 2,
+      label: "My Settings",
+      route: "/settings/my-settings",
+
+      icon: (className: string) => (
+        <SlidersHorizontal className={cn(className)} />
+      ),
+    },
+    {
+      id: 3,
+      label: "My Notification",
+      route: "/settings/my-notification",
+
+      icon: (className: string) => <BellDot className={cn(className)} />,
+    },
+    {
+      id: 4,
+      label: "My Connections",
+      route: "/settings/my-connections",
+
+      icon: (className: string) => (
+        <ArrowUpRightSquare className={cn(className)} />
+      ),
+    },
+  ],
+  Workspaces: [
+    {
+      id: 5,
+      label: "Settings",
+      route: "/settings",
+      icon: (className: string) => <Settings className={cn(className)} />,
+    },
+    {
+      id: 6,
+      label: "Upgrade",
+      route: "/settings/upgrade",
+      icon: (className: string) => <ArrowUpCircle className={cn(className)} />,
+    },
+    {
+      id: 7,
+      label: "Imports",
+      route: "/settings/imports",
+      icon: (className: string) => (
+        <ArrowDownToLine className={cn(className)} />
+      ),
+    },
+  ],
+};
 
 export const getIcons = (key: string) => {
   const lowerCaseKey = key.toLowerCase();
