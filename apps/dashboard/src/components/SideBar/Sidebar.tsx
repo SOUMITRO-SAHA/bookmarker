@@ -150,9 +150,7 @@ const Sidebar: React.FC<SidebarProps> = () => {
         </div>
 
         {/* Buttom */}
-        <div className="flex items-center h-12">
-          <ModeToggle />
-        </div>
+        <div className="flex items-center h-12"></div>
       </nav>
     </aside>
   );
