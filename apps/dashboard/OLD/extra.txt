@@ -1,0 +1,42 @@
+
+            {/* Settings Button */}
+            <DropdownMenu>
+              <DropdownMenuTrigger
+                asChild
+                className="flex items-center justify-center outline-none"
+              >
+                <Button className="w-4 h-4 p-0 ml-1" variant={"ghost"}>
+                  <ChevronsUpDown className="text-slate-400" />
+                </Button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent align="end" className="w-full">
+                <DropdownMenuLabel className="text-xs dark:text-slate-400">
+                  {userDetails.email}
+                </DropdownMenuLabel>
+                <DropdownMenuSeparator />
+                <DropdownMenuLabel>
+                  <UserDetails />
+                </DropdownMenuLabel>
+                <DropdownMenuSeparator />
+                <DropdownMenuItem>
+                  <User className="w-4 h-4 mr-2" />
+                  <span>Profile</span>
+                </DropdownMenuItem>
+                <DropdownMenuItem>
+                  <BellDot className="w-4 h-4 mr-2" />
+                  <span>Notifications</span>
+                </DropdownMenuItem>
+                <DropdownMenuItem>
+                  <Settings className="w-4 h-4 mr-2" />
+                  <span>Setting</span>
+                </DropdownMenuItem>
+                <DropdownMenuItem>
+                  <Heart className="w-4 h-4 mr-2 text-pink-500" />
+                  <span>Support</span>
+                </DropdownMenuItem>
+                <DropdownMenuItem>
+                  <LogOut className="w-4 h-4 mr-2" />
+                  <span>Log out</span>
+                </DropdownMenuItem>
+              </DropdownMenuContent>
+            </DropdownMenu>
