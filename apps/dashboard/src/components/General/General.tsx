@@ -16,6 +16,10 @@ export const H3 = ({ children }: { children: React.ReactNode }) => {
   );
 };
 
+export const H4 = ({ children }: { children: React.ReactNode }) => {
+  return <h4 className={cn("capitalize text-subtle")}>{children}</h4>;
+};
+
 // General Styles
 export const getOverlayStyle = (isOpen = false) => {
   const overlayClasses = cn(
