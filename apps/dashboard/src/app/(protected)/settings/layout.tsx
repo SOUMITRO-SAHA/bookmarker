@@ -1,39 +1,27 @@
+"use client";
+import { Button } from "@/common/Button";
 import {
   SettingSideBar,
   SettingSideBarItem,
   SettingSideBarItemGroup,
 } from "@/components/settings";
-import { userDetails } from "@/lib/constant";
+import { settingsMenuItems, userDetails } from "@/lib/constant";
 import { cn } from "@/lib/utils";
-import {
-  ArrowDownToLine,
-  ArrowUpCircle,
-  ArrowUpRightSquare,
-  BellDot,
-  CircleUserRound,
-  KeyRound,
-  LayoutGrid,
-  Settings,
-  SlidersHorizontal,
-} from "lucide-react";
-import { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
-
-const metadata: Metadata = {
-  title: "Settings | Bookmarkers",
-  description: "",
-};
+import { usePathname } from "next/navigation";
+import * as React from "react";
 
 export default function SettingsLayout({
   children,
 }: {
   children: React.ReactNode;
 }): JSX.Element {
+  const pathname = usePathname();
   return (
     <main className="flex w-screen h-screen">
       {/* Sidebar */}
-      <section className="w-[15%]">
+      <section className="w-[25%] lg:w-[20%] xl:w-[15%]">
         <SettingSideBar>
           {/* User Details | Static*/}
           <div className="flex items-center gap-2 mb-2">
@@ -45,94 +33,50 @@ export default function SettingsLayout({
               <div className="text-[10px] text-subtle">{userDetails.email}</div>
             </div>
           </div>
+
           {/* My Account Group */}
           <SettingSideBarItemGroup title="Account">
-            <SettingSideBarItem>
-              <Link
-                href="accounts"
-                className={cn("grid grid-cols-12 gap-2 items-center")}
-              >
-                <div className="col-span-2">
-                  <CircleUserRound className={cn("w-5 h-5")} />
-                </div>
-                <div className="col-span-10">My Account</div>
-              </Link>
-            </SettingSideBarItem>
-            <SettingSideBarItem>
-              <Link
-                href={"my-settings"}
-                className={cn("grid grid-cols-12 gap-2 items-center")}
-              >
-                <div className="col-span-2">
-                  <SlidersHorizontal className={cn("w-5 h-5")} />
-                </div>
-                <div className="col-span-10">My Settings</div>
-              </Link>
-            </SettingSideBarItem>
-            <SettingSideBarItem>
-              <Link
-                href={"my-notification"}
-                className={cn("grid grid-cols-12 gap-2 items-center")}
-              >
-                <div className="col-span-2">
-                  <BellDot className={cn("w-5 h-5")} />
-                </div>
-                <div className="col-span-10">My Notification</div>
-              </Link>
-            </SettingSideBarItem>
-            <SettingSideBarItem>
-              <Link
-                href={"my-connections"}
-                className={cn("grid grid-cols-12 gap-2 items-center")}
-              >
-                <div className="col-span-2">
-                  <ArrowUpRightSquare className={cn("w-5 h-5")} />
-                </div>
-                <div className="col-span-10">My Connections</div>
-              </Link>
-            </SettingSideBarItem>
+            {settingsMenuItems.Accounts.map((item) => {
+              const { id, label, icon, route } = item;
+              return (
+                <SettingSideBarItem isActive={pathname === route} key={id}>
+                  <Link
+                    href={route}
+                    className={cn("grid grid-cols-12 gap-2 items-center")}
+                  >
+                    <div className="col-span-2">{icon(cn("w-5 h-5"))}</div>
+                    <div className="col-span-10">{label}</div>
+                  </Link>
+                </SettingSideBarItem>
+              );
+            })}
+          </SettingSideBarItemGroup>
+          <SettingSideBarItemGroup title="Workspace">
+            {settingsMenuItems.Workspaces.map((item) => {
+              const { id, label, icon, route } = item;
+              return (
+                <SettingSideBarItem isActive={pathname === route} key={id}>
+                  <Link
+                    href={route}
+                    className={cn("grid grid-cols-12 gap-2 items-center")}
+                  >
+                    <div className="col-span-2">{icon(cn("w-5 h-5"))}</div>
+                    <div className="col-span-10">{label}</div>
+                  </Link>
+                </SettingSideBarItem>
+              );
+            })}
           </SettingSideBarItemGroup>
 
-          {/* Main Settings Group */}
-          <SettingSideBarItemGroup title="Workspace">
-            <SettingSideBarItem
-              className={cn("grid grid-cols-12 gap-2 items-center")}
-            >
-              <div className="col-span-2">
-                <Settings className={cn("w-5 h-5")} />
-              </div>
-              <div className="col-span-10">Settings</div>
-            </SettingSideBarItem>
-            <SettingSideBarItem
-              className={cn("grid grid-cols-12 gap-2 items-center")}
-            >
-              <div className="col-span-2">
-                <ArrowUpCircle className={cn("w-5 h-5")} />
-              </div>
-              <div className="col-span-10">Upgrade</div>
-            </SettingSideBarItem>
-            <SettingSideBarItem
-              className={cn("grid grid-cols-12 gap-2 items-center")}
-            >
-              <div className="col-span-2">
-                <KeyRound className={cn("w-5 h-5")} />
-              </div>
-              <div className="col-span-10">Security</div>
-            </SettingSideBarItem>
-            <SettingSideBarItem
-              className={cn("grid grid-cols-12 gap-2 items-center")}
-            >
-              <div className="col-span-2">
-                <ArrowDownToLine className={cn("w-5 h-5")} />
-              </div>
-              <div className="col-span-10">Imports</div>
-            </SettingSideBarItem>
-          </SettingSideBarItemGroup>
+          {/* Go Back to Home Page */}
+          <Button variant="outline">
+            <Link href={"/dashboard"}>Go Back to Dashboard</Link>
+          </Button>
         </SettingSideBar>
       </section>
 
       {/* Body */}
-      <section className="bg-subtle p-10 w-[calc(100%-15%)]">
+      <section className="bg-subtle p-10 w-[calc(100%-25%)] lg:w-[calc(100%-20%)] xl:w-[calc(100%-15%)]">
         {children}
       </section>
     </main>
