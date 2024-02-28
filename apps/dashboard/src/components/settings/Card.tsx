@@ -11,7 +11,7 @@ export const CardItem = ({
   onClick,
 }: {
   title: string;
-  description: string;
+  description: string | React.ReactNode;
   message?: string;
   titleClassName?: string;
   renderComponent?: React.ReactNode;
@@ -29,7 +29,11 @@ export const CardItem = ({
           >
             <div>
               <h5 className={cn("text-sm", titleClassName)}>{title}</h5>
-              <p className="text-xs text-subtle">{description}</p>
+              {typeof description === "string" ? (
+                <p className="text-xs text-subtle">{description}</p>
+              ) : (
+                description
+              )}
             </div>
             <div>{renderComponent}</div>
           </div>
@@ -44,6 +48,16 @@ export const CardItem = ({
   );
 };
 
-export const CardGroup = ({ children }: { children: React.ReactNode }) => {
-  return <div className={cn("mb-5")}>{children}</div>;
+export const CardDivider = ({ className }: { className?: string }) => {
+  return <div className={cn("h-[1px] bg-border rounded-full", className)} />;
+};
+
+export const CardGroup = ({
+  children,
+  className,
+}: {
+  children: React.ReactNode;
+  className?: string;
+}) => {
+  return <div className={cn("mb-5", className)}>{children}</div>;
 };
