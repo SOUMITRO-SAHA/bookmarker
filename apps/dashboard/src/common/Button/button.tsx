@@ -1,3 +1,4 @@
+"use client";
 import { cn } from "@/lib/utils";
 import { Slot } from "@radix-ui/react-slot";
 import { cva, type VariantProps } from "class-variance-authority";
@@ -56,6 +57,7 @@ const Button = React.forwardRef<
     loading = false,
     prefixIcon,
     suffixIcon,
+    ...reset
   } = props;
   const Comp = asChild ? Slot : asDiv ? "div" : "button";
   const disabled = props.disabled || loading;
