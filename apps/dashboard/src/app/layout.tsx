@@ -60,6 +60,7 @@ export default function RootLayout({
           "dark:bg-darkgray-50 todesktop:!bg-transparent bg-subtle antialiased"
         )}
       >
+        {/* Div for Modals */}
         <ThemeProvider
           attribute="class"
           defaultTheme="system"
@@ -68,6 +69,7 @@ export default function RootLayout({
         >
           <TooltipProvider>{children}</TooltipProvider>
         </ThemeProvider>
+        <div id="modal" />
       </body>
     </html>
   );
