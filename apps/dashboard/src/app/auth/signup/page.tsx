@@ -2,10 +2,12 @@
 import { Button } from "@/common/Button";
 import { InputField } from "@/common/Input/InputField";
 import { PasswordField } from "@/common/Input/PasswordField";
+import SignupForm from "@/components/auth/Signup/SignupForm";
 import { cn } from "@/lib/utils";
+import { signIn } from "next-auth/react";
 import Link from "next/link";
 import React from "react";
-import { FaGoogle, FaInstagram } from "react-icons/fa6";
+import { FaGoogle, FaInstagram, FaLinkedin, FaTwitter } from "react-icons/fa6";
 
 interface pageProps {
   //Props
@@ -19,14 +21,6 @@ const page: React.FC<pageProps> = () => {
         {/* TODO: Add the Testimonials or Screen Shoots */}
         {/* Testimonials */}
         <div className="w-[80%]"></div>
-
-        {/* Go to Login Page */}
-        <div className="text-sm">
-          <span>Already have an account?</span>
-          <Button variant={"link"} className={cn("p-2")}>
-            <Link href="login">Signin</Link>
-          </Button>
-        </div>
       </section>
 
       {/* Right Side */}
@@ -39,57 +33,17 @@ const page: React.FC<pageProps> = () => {
         </div>
 
         {/* Form */}
-        <form action="" className="w-[60%] flex flex-col gap-5">
-          {/* username */}
-          <InputField
-            placeholder="username"
-            addOnLeading={<div>bookmarker/</div>}
-          />
-          {/* Email */}
-          <div>
-            <p className="mb-2">Email</p>
-            <InputField placeholder="jhon@email.com" />
-          </div>
+        <SignupForm />
 
-          {/* Password */}
-          <div>
-            <div>
-              <p className="mb-2">Password</p>
-              <PasswordField />
-              <ul className="mt-1 ml-8 text-sm list-disc">
-                <li>Mix of uppercase & lowercase letters</li>
-                <li>Minimum 7 characters long</li>
-                <li>Contain at least 1 number</li>
-              </ul>
-            </div>
-          </div>
+        <div className="divider mt-5 my-3 w-[70%]" />
 
-          {/* Button */}
-          <Button>Create Account</Button>
-        </form>
-        <div className="flex items-center justify-center w-full gap-2 my-8">
-          <div className="divider bg-muted w-[20%]" />
-          <div className="w-auto text-muted-foreground">Or continue with</div>
-          <div className="divider bg-muted w-[20%]" />
-        </div>
-
-        {/* Other Provider */}
-        <div className="flex items-center justify-center w-[80%] gap-5">
-          <Button
-            variant="outline"
-            size={"lg"}
-            className={cn("flex w-full items-center gap-2")}
-          >
-            <FaGoogle />
-            <span>Google</span>
-          </Button>
-          <Button
-            variant="outline"
-            size={"lg"}
-            className={cn("flex w-full items-center gap-2")}
-          >
-            <FaInstagram />
-            <span>Instagram</span>
+        {/* Go to Login Page */}
+        <div className="uppercase text-md">
+          <span>Already have an account?</span>
+          <Button variant={"link"}>
+            <Link href="/auth/login" className="uppercase">
+              Signin
+            </Link>
           </Button>
         </div>
       </section>
