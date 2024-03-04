@@ -7,6 +7,7 @@ import { headers } from "next/headers";
 import Script from "next/script";
 import "../../styles/globals.css";
 import { TooltipProvider } from "@/common/ui/tooltip";
+import { SessionProvider } from "next-auth/react";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -24,8 +25,10 @@ const interFont = Inter({
 
 export default function RootLayout({
   children,
+  authModal,
 }: {
   children: React.ReactNode;
+  authModal: React.ReactNode;
 }): JSX.Element {
   const h = headers();
 
@@ -60,16 +63,21 @@ export default function RootLayout({
           "dark:bg-darkgray-50 todesktop:!bg-transparent bg-subtle antialiased"
         )}
       >
-        {/* Div for Modals */}
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="system"
-          enableSystem
-          disableTransitionOnChange
-        >
-          <TooltipProvider>{children}</TooltipProvider>
-        </ThemeProvider>
-        <div id="modal" />
+        <SessionProvider>
+          {/* Div for Modals */}
+          <ThemeProvider
+            attribute="class"
+            defaultTheme="system"
+            enableSystem
+            disableTransitionOnChange
+          >
+            {/* Auth Modal */}
+            {authModal}
+
+            {/* Children */}
+            <TooltipProvider>{children}</TooltipProvider>
+          </ThemeProvider>
+        </SessionProvider>
       </body>
     </html>
   );
