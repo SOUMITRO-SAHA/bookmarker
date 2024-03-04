@@ -19,22 +19,23 @@ module.exports = {
     },
     extend: {
       colors: {
+        // Extra
         border: "var(--border)",
         input: "var(--input)",
         ring: "var(--ring)",
-        background: {
-          DEFAULT: "var(--background)",
-          bg: "var(--bg)",
-          muted: "var(--bg-muted)",
-          error: "var(--bg-error)",
-          emphasis: "var(--bg-emphasis)",
-          subtle: "var(--bg-subtle)",
-          inverted: "var(--bg-inverted)",
-          info: "var(--bg-info)",
-          success: "var(--bg-success)",
-          attention: "var(--bg-attention)",
-          "dark-error": "var(--bg-dark-error)",
-        },
+        bg: "var(--bg)",
+        muted: "var(--bg-muted)",
+        error: "var(--bg-error)",
+        emphasis: "var(--bg-emphasis)",
+        subtle: "var(--bg-subtle)",
+        inverted: "var(--bg-inverted)",
+        info: "var(--bg-info)",
+        success: "var(--bg-success)",
+        attention: "var(--bg-attention)",
+        "dark-error": "var(--bg-dark-error)",
+
+        // Default
+        background: "var(--background)",
         foreground: "var(--foreground)",
         primary: {
           DEFAULT: "var(--primary)",
@@ -45,8 +46,8 @@ module.exports = {
           foreground: "var(--secondary-foreground)",
         },
         destructive: {
-          DEFAULT: "var(--destructive)",
-          foreground: "var(--destructive-foreground)",
+          DEFAULT: "var(--destructive, #811d1d)",
+          foreground: "var(--destructive-foreground, #f8fafc)",
         },
         muted: {
           DEFAULT: "var(--bg-muted)",
@@ -64,16 +65,6 @@ module.exports = {
           DEFAULT: "var(--card)",
           foreground: "var(--card-foreground)",
         },
-        emphasis: "var(--bg-emphasis)",
-        default: "var(--bg, white)",
-        subtle: "var(--bg-subtle)",
-        inverted: "var(--bg-inverted)",
-        info: "var(--bg-info)",
-        success: "var(--bg-success)",
-        attention: "var(--bg-attention)",
-        error: "var(--bg-error)",
-        darkerror: "var(--bg-dark-error)",
-        black: "#111111",
         brand: {
           default: "var(--brand,#111827)",
           emphasis: "var(--brand-emphasis,#101010)",
