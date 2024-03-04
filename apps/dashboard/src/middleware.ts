@@ -1,14 +1,37 @@
 import authConfig from "@/auth.config";
 import NextAuth from "next-auth";
 import { NextAuthRequest } from "node_modules/next-auth/lib";
+import {
+  publicRoutes,
+  authRoutes,
+  APIAUTHPREFIX,
+  DEFAULT_LOGIN_REDIRECT,
+} from "@/routes";
 
 const { auth } = NextAuth(authConfig);
 
 // Explicitly specify the type annotation for the auth function
 const customAuth: any = (req: NextAuthRequest) => {
+  const { nextUrl } = req;
   const isLoggedIn = !!req.auth;
-  console.log("Routes", req.nextUrl.pathname);
-  console.log("Logged In Status: ", isLoggedIn);
+
+  const isApiAuthRoute = nextUrl.pathname.startsWith(APIAUTHPREFIX);
+  const isPublicRoute = publicRoutes.includes(nextUrl.pathname);
+  const isAuthRoute = authRoutes.includes(nextUrl.pathname);
+
+  if (isApiAuthRoute) return null;
+  if (isAuthRoute) {
+    if (isLoggedIn)
+      return Response.redirect(new URL(DEFAULT_LOGIN_REDIRECT, nextUrl));
+
+    return null;
+  }
+
+  if (!isLoggedIn && !isPublicRoute) {
+    return Response.redirect(new URL("/auth/login", nextUrl));
+  }
+
+  return null;
 };
 
 // Export the custom auth function
