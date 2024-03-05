@@ -1,9 +1,5 @@
-import { renderHomeIcon } from "@/assets/icons.svg";
-import { MenuItem, getIcons, menuItems } from "@/lib/constant";
-import { Avatar, AvatarFallback, AvatarImage } from "@/common/ui/avatar";
-
 import { Button } from "@/common/Button";
-import { api } from "@/lib/trpc";
+import { MenuItem, getIcons, menuItems } from "@/lib/constant";
 import { Plus } from "lucide-react";
 interface SideMenuProps {
   //Props
@@ -57,9 +53,6 @@ const SideMenu = async () => {
 
           {/* Divider */}
           <div className="divider" />
-
-          {/* User Created */}
-          <div className="flex flex-col gap-1 mx-1 mt-2"></div>
         </div>
       </div>
 
