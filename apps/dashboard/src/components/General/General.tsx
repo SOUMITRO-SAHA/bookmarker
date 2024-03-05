@@ -8,9 +8,20 @@ export const Subtitle = ({ children }: { children: React.ReactNode }) => {
   return <h3>{children}</h3>;
 };
 
-export const H3 = ({ children }: { children: React.ReactNode }) => {
+export const H3 = ({
+  children,
+  className,
+}: {
+  children: React.ReactNode;
+  className?: string;
+}) => {
   return (
-    <h3 className="pb-2 mb-1 text-lg capitalize border-b border-b-border">
+    <h3
+      className={cn(
+        "pb-2 mb-1 text-lg capitalize border-b border-b-border",
+        className
+      )}
+    >
       {children}
     </h3>
   );
