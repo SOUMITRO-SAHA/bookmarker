@@ -15,48 +15,7 @@ interface pageProps {
   //Props
 }
 
-type FormValues = z.infer<typeof signupSchema>;
-
-interface FormData {
-  name: string;
-  password: string;
-}
-const formDataInitialState = {
-  name: "",
-  password: "",
-};
-
-interface LoginValues {
-  email: string;
-  password: string;
-  totpCode: string;
-  backupCode: string;
-  csrfToken: string;
-}
-
 const page: React.FC<pageProps> = () => {
-  const formSchema = z
-    .object({
-      email: z
-        .string()
-        .min(1, "error_required_field")
-        .email("enter_valid_email"),
-      password: z.string().min(1, "error_required_field"),
-    })
-    // Passthrough other fields like totpCode
-    .passthrough();
-
-  const methods = useForm<LoginValues>({ resolver: zodResolver(formSchema) });
-  const { register, formState } = methods;
-  const [twoFactorRequired, setTwoFactorRequired] = React.useState(false);
-  const [twoFactorLostAccess, setTwoFactorLostAccess] = React.useState(false);
-  const [errorMessage, setErrorMessage] = React.useState<string | null>(null);
-
-  // Function
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-  };
-
   // Side Effect
   return (
     <main
