@@ -1,9 +1,11 @@
 import { renderHomeIcon } from "@/assets/icons.svg";
 import {
+  Archive,
   ArrowDownToLine,
   ArrowUpCircle,
   ArrowUpRightSquare,
   BellDot,
+  BookOpenText,
   CircleUserRound,
   LibraryBig,
   ListTodo,
@@ -28,6 +30,7 @@ export type MenuItem = {
   label: string;
   route: string;
   subfolders: Category[] | null;
+  icon: (className: string) => React.ReactNode;
 };
 
 export type Category = {
@@ -42,38 +45,60 @@ export type Category = {
 export const menuItems: MenuItem[] = [
   {
     id: 1,
-    label: "Home",
-    route: "/",
+    label: "Favourite",
+    route: "/dashboard/favourite",
     subfolders: null,
+    icon: (className: string) => <Star className={cn(className)} />,
   },
-  { id: 3, label: "Favourite", route: "/favourite", subfolders: null },
   {
-    id: 4,
+    id: 2,
+    label: "Archive",
+    route: "/dashboard/archive",
+    subfolders: null,
+    icon: (className: string) => <Archive className={cn(className)} />,
+  },
+  {
+    id: 3,
     label: "Videos",
-    route: "/videos",
+    route: "/dashboard/videos",
+    icon: (className: string) => <Play className={cn(className)} />,
     subfolders: [
       {
         id: 41,
         label: "Youtube",
-        route: "/videos/youtube",
+        route: "/dashboard/videos/youtube",
         parent: { id: 4 },
       },
     ],
   },
   {
-    id: 5,
+    id: 4,
     label: "Articles",
-    route: "/articles",
+    route: "/dashboard/articles",
+    icon: (className: string) => <LibraryBig className={cn(className)} />,
     subfolders: [
       {
         id: 51,
         label: "Business",
-        route: "/articles/business",
+        route: "/dashboard/articles/business",
         parent: { id: 5 },
       },
     ],
   },
-  { id: 6, label: "Unread", route: "/unread", subfolders: null },
+  {
+    id: 5,
+    label: "Notes",
+    route: "/dashboard/notes",
+    icon: (className: string) => <BookOpenText className={cn(className)} />,
+    subfolders: null,
+  },
+  {
+    id: 6,
+    label: "Unread",
+    route: "/dashboard/unread",
+    icon: (className: string) => <ListTodo className={cn(className)} />,
+    subfolders: null,
+  },
 ];
 
 export type Group = "Accounts" | "Workspaces";
@@ -89,6 +114,7 @@ export type SettingsMenuGroup = {
   key: Group;
   items: SettingsMenuItem[];
 };
+
 export const settingsMenuItems: Record<Group, SettingsMenuItem[]> = {
   Accounts: [
     {
