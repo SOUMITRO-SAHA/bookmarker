@@ -1,4 +1,5 @@
 "use client";
+import { register } from "@/actions/register";
 import { Button } from "@/common/Button";
 import { InputField } from "@/common/Input/InputField";
 import { PasswordField } from "@/common/Input/PasswordField";
@@ -9,19 +10,24 @@ import {
   FormField,
   FormItem,
   FormLabel,
-  FormMessage,
 } from "@/common/ui/form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import * as React from "react";
-import * as z from "zod";
-import { useForm } from "react-hook-form";
 import { RegisterSchema } from "@repo/shared";
+import * as React from "react";
+import { useForm } from "react-hook-form";
+import * as z from "zod";
+import { FormSuccess } from "../Success";
+import { FormError } from "../Error";
 
 interface SignupFormProps {
   //Props
 }
 
 const SignupForm: React.FC<SignupFormProps> = () => {
+  const [isPending, startTransition] = React.useTransition();
+  const [success, setSuccess] = React.useState<string>("");
+  const [error, setError] = React.useState("");
+
   const form = useForm<z.infer<typeof RegisterSchema>>({
     resolver: zodResolver(RegisterSchema),
     defaultValues: {
@@ -30,9 +36,21 @@ const SignupForm: React.FC<SignupFormProps> = () => {
       password: "",
     },
   });
+
   const onSubmit = (values: z.infer<typeof RegisterSchema>) => {
-    const { username, email, password } = values;
-    console.log(username, email, password);
+    setSuccess("");
+    setError("");
+
+    startTransition(() => {
+      register(values)
+        .then((data) => {
+          if (data.success) setSuccess(data.success);
+          if (data.error) setError(data.error);
+        })
+        .catch((err) => {
+          setError(err);
+        });
+    });
   };
 
   return (
@@ -44,11 +62,12 @@ const SignupForm: React.FC<SignupFormProps> = () => {
             name="username"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>User Name</FormLabel>
+                <FormLabel>UserName</FormLabel>
                 <InputField
+                  {...field}
+                  disabled={isPending}
                   placeholder="username"
                   addOnLeading={<div>bookmarker/</div>}
-                  {...field}
                 />
               </FormItem>
             )}
@@ -61,8 +80,9 @@ const SignupForm: React.FC<SignupFormProps> = () => {
                 <FormLabel>Email</FormLabel>
                 <FormControl className="mt-[1px]">
                   <InputField
-                    placeholder="i.e. john.demo@emample.com"
                     {...field}
+                    disabled={isPending}
+                    placeholder="i.e. john.demo@emample.com"
                   />
                 </FormControl>
               </FormItem>
@@ -75,7 +95,7 @@ const SignupForm: React.FC<SignupFormProps> = () => {
               <FormItem>
                 <FormLabel>Password</FormLabel>
                 <FormControl>
-                  <PasswordField {...field} />
+                  <PasswordField disabled={isPending} {...field} />
                 </FormControl>
                 <FormDescription>
                   <ul className="mt-1 ml-8 text-sm list-disc">
@@ -88,11 +108,11 @@ const SignupForm: React.FC<SignupFormProps> = () => {
             )}
           />
         </div>
-        <div className="w-full">
-          <Button type="submit" size={"lg"}>
-            Create Account
-          </Button>
-        </div>
+        <FormSuccess message={success} />
+        <FormError message={error} />
+        <Button type="submit" loading={isPending} size={"full"}>
+          Create Account
+        </Button>
       </form>
     </Form>
   );
