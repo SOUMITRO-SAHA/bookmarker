@@ -1,4 +1,5 @@
 "use client";
+import { login } from "@/actions/login";
 import { Button } from "@/common/Button";
 import { InputField } from "@/common/Input/InputField";
 import { PasswordField } from "@/common/Input/PasswordField";
@@ -9,9 +10,11 @@ import {
   FormItem,
   FormLabel,
 } from "@/common/ui/form";
+import { FormError } from "@/components/auth/Error";
+import { FormSuccess } from "@/components/auth/Success";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { LoginSchema } from "@repo/shared";
-import React from "react";
+import * as React from "react";
 import { useForm } from "react-hook-form";
 import * as z from "zod";
 
@@ -20,6 +23,9 @@ interface LoginFormProps {
 }
 
 const LoginForm: React.FC<LoginFormProps> = () => {
+  const [success, setSuccess] = React.useState<string>("");
+  const [error, setError] = React.useState("");
+  const [isPending, startTransition] = React.useTransition();
   const form = useForm<z.infer<typeof LoginSchema>>({
     resolver: zodResolver(LoginSchema),
     defaultValues: {
@@ -29,8 +35,19 @@ const LoginForm: React.FC<LoginFormProps> = () => {
   });
 
   function onSubmit(values: z.infer<typeof LoginSchema>) {
-    const { email, password } = values;
-    // TODO: Now send this to the Next-Auth
+    // Before Calling the Server Actions Clearing the States
+    setSuccess("");
+    setError("");
+
+    // Calling the Server Actions
+    startTransition(() => {
+      login(values)
+        .then((data) => {
+          if (data?.success) setSuccess(data.success);
+          if (data?.error) setError(data.error);
+        })
+        .catch((err) => setError(err));
+    });
   }
 
   return (
@@ -45,8 +62,9 @@ const LoginForm: React.FC<LoginFormProps> = () => {
                 <FormLabel>Email</FormLabel>
                 <FormControl>
                   <InputField
-                    placeholder="i.e. john.demo@emample.com"
                     {...field}
+                    disabled={isPending}
+                    placeholder="i.e. john.demo@emample.com"
                   />
                 </FormControl>
               </FormItem>
@@ -59,13 +77,17 @@ const LoginForm: React.FC<LoginFormProps> = () => {
               <FormItem>
                 <FormLabel>Password</FormLabel>
                 <FormControl>
-                  <PasswordField {...field} />
+                  <PasswordField disabled={isPending} {...field} />
                 </FormControl>
               </FormItem>
             )}
           />
         </div>
-        <Button type="submit">Submit</Button>
+        <FormSuccess message={success} />
+        <FormError message={error} />
+        <Button loading={isPending} size={"full"} type="submit">
+          Submit
+        </Button>
       </form>
     </Form>
   );
