@@ -13,7 +13,7 @@ const buttonVariants = cva(
         default:
           "bg-primary text-inverted shadow hover:bg-inverted active:ring-inverted",
         secondary:
-          "bg-secondary text-secondary-foreground shadow-sm hover:bg-secondary/80 dark:hover:bg-primary/80 disabled:shadow-sm",
+          "bg-emphasis text-secondary-foreground shadow-sm hover:bg-emphasis/80 dark:hover:bg-primary/80 disabled:shadow-sm",
         outline:
           "border border-border bg-bg dark:text-emphasis shadow-sm hover:bg-accent hover:text-accent-foreground",
         destructive:
@@ -26,6 +26,7 @@ const buttonVariants = cva(
         sm: "h-8 rounded-md px-3 text-xs",
         lg: "h-10 rounded-md px-8",
         icon: "h-9 w-9",
+        full: "w-full h-9",
       },
     },
     defaultVariants: {
