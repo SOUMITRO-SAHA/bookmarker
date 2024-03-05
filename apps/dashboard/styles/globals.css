@@ -165,6 +165,10 @@
     height: 1px;
     background: var(--border);
   }
+
+  .bg-image {
+    background-image: url("/bookmarker.svg");
+  }
 }
 
 @layer utilities {
@@ -426,18 +430,4 @@ select:focus {
 
 ::-webkit-search-cancel-button {
   -webkit-appearance: none;
-}
-
-.react-tel-input .country-list .country:hover,
-.react-tel-input .country-list .country.highlight {
-  @apply !bg-emphasis;
-}
-
-.react-tel-input .flag-dropdown .selected-flag,
-.react-tel-input .flag-dropdown.open .selected-flag {
-  @apply !bg-default;
-}
-
-.react-tel-input .flag-dropdown {
-  @apply !border-r-default left-0.5 !border-y-0 !border-l-0;
 }
