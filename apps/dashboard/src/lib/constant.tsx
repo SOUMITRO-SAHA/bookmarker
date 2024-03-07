@@ -17,6 +17,7 @@ import {
 } from "lucide-react";
 import { cn } from "./utils";
 
+export const BrandTitle = "Bookmarker";
 export const userDetails = {
   username: "Soumitra Saha",
   email: "soumitrosahaofficial@gmail.com",
