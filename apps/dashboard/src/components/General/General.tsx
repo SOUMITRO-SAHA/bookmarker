@@ -1,7 +1,44 @@
+import { BrandTitle } from "@/lib/constant";
 import { cn } from "@/lib/utils";
+import { title } from "process";
 
-export const PageTitle = ({ children }: { children: React.ReactNode }) => {
-  return <h1>{children}</h1>;
+export const TitleHeader = ({
+  title,
+  subtitle,
+  description,
+  className,
+}: {
+  title?: string;
+  subtitle?: string;
+  description?: string;
+  className?: string;
+}) => {
+  return (
+    <>
+      <h1 className={cn("text-3xl text-center font-bold ", className)}>
+        {BrandTitle}
+      </h1>
+      <h3 className="my-6 font-bold text-center uppercase text-7xl">{title}</h3>
+      <h5 className="text-2xl text-center capitalize text-muted">{subtitle}</h5>
+      <p className="my-4 text-base text-center text-accent-foreground">
+        {description}
+      </p>
+    </>
+  );
+};
+
+export const PageTitle = ({
+  children,
+  className,
+}: {
+  children: React.ReactNode;
+  className?: string;
+}) => {
+  return (
+    <h1 className={cn("text-3xl text-center font-bold my-10", className)}>
+      {children}
+    </h1>
+  );
 };
 
 export const Subtitle = ({ children }: { children: React.ReactNode }) => {
