@@ -1,6 +1,5 @@
 import authConfig from "@/auth.config";
 import NextAuth from "next-auth";
-import { NextAuthRequest } from "node_modules/next-auth/lib";
 import {
   publicRoutes,
   authRoutes,
@@ -11,7 +10,7 @@ import {
 const { auth } = NextAuth(authConfig);
 
 // Explicitly specify the type annotation for the auth function
-const customAuth: any = (req: NextAuthRequest) => {
+const customAuth: any = (req: any) => {
   const { nextUrl } = req;
   const isLoggedIn = !!req.auth;
 
