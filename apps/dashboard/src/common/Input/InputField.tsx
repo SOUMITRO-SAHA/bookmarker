@@ -101,9 +101,9 @@ export const InputField = React.forwardRef<HTMLInputElement, InputFieldProps>(
           <Skeleton
             as={Label}
             htmlFor={id}
-            loadingClassName="w-16"
             {...labelProps}
             className={cn(
+              "w-16",
               labelClassName,
               labelSrOnly && "sr-only",
               props.error && "text-error"
