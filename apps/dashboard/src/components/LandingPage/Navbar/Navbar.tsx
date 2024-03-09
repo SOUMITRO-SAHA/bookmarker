@@ -9,7 +9,6 @@ import React from "react";
 
 const Navbar = () => {
   const { theme } = useTheme();
-  console.log("TT", theme);
   return (
     <nav className="container flex items-center justify-between p-5 mx-auto max-w-7xl">
       <div className="flex items-center gap-3">
