@@ -24,7 +24,7 @@ const page: React.FC<pageProps> = () => {
       </section>
 
       {/* Right Side */}
-      <section className="flex flex-col items-center justify-center h-full col-span-5 bg-muted">
+      <section className="flex flex-col items-center justify-center h-full col-span-5 px-14 bg-muted">
         <div className="mb-8 text-center">
           <h3 className="mb-3 text-3xl font-semibold">
             Create your Bookmarker account
