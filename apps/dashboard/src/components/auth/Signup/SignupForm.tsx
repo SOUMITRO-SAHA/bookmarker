@@ -11,13 +11,14 @@ import {
   FormItem,
   FormLabel,
 } from "@/common/ui/form";
+import { FormError } from "@/components/auth/Error";
+import { FormSuccess } from "@/components/auth/Success";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { RegisterSchema } from "@repo/shared";
+import { RedirectType, redirect } from "next/navigation";
 import * as React from "react";
 import { useForm } from "react-hook-form";
 import * as z from "zod";
-import { FormSuccess } from "../Success";
-import { FormError } from "../Error";
 
 interface SignupFormProps {
   //Props
@@ -44,8 +45,12 @@ const SignupForm: React.FC<SignupFormProps> = () => {
     startTransition(() => {
       register(values)
         .then((data) => {
-          if (data.success) setSuccess(data.success);
-          if (data.error) setError(data.error);
+          if (data && data.success) {
+            setSuccess(data.message);
+            redirect("/dashboard", RedirectType.replace);
+          } else if (data && !data.success) {
+            setError(data.message);
+          }
         })
         .catch((err) => {
           setError(err);
@@ -64,10 +69,10 @@ const SignupForm: React.FC<SignupFormProps> = () => {
               <FormItem>
                 <FormLabel>UserName</FormLabel>
                 <InputField
-                  {...field}
                   disabled={isPending}
                   placeholder="username"
                   addOnLeading={<div>bookmarker/</div>}
+                  {...field}
                 />
               </FormItem>
             )}
@@ -80,9 +85,9 @@ const SignupForm: React.FC<SignupFormProps> = () => {
                 <FormLabel>Email</FormLabel>
                 <FormControl className="mt-[1px]">
                   <InputField
-                    {...field}
                     disabled={isPending}
                     placeholder="i.e. john.demo@emample.com"
+                    {...field}
                   />
                 </FormControl>
               </FormItem>
