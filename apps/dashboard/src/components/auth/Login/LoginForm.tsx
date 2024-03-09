@@ -43,8 +43,8 @@ const LoginForm: React.FC<LoginFormProps> = () => {
     startTransition(() => {
       login(values)
         .then((data) => {
-          if (data?.success) setSuccess(data.success);
-          if (data?.error) setError(data.error);
+          if (data && data.success) setSuccess(data.message);
+          else if (data && !data.success) setError(data.message);
         })
         .catch((err) => setError(err));
     });

@@ -4,7 +4,7 @@ import authConfig from "@/auth.config";
 import { db } from "@repo/db";
 import { env } from "@/config/env";
 
-export const { handlers, auth } = NextAuth({
+export const { handlers, auth, signIn, signOut } = NextAuth({
   secret: env.AUTH_SECRET,
   adapter: PrismaAdapter(db),
   session: { strategy: "jwt" },
