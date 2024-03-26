@@ -1,12 +1,13 @@
 import { TooltipProvider } from "@/common/ui/tooltip";
 import { ThemeProvider } from "@/components/Theme/ThemeProvider";
 import { cn } from "@/lib/utils";
-import { IS_PRODUCTION } from "@repo/lib/constants";
+import { IS_PRODUCTION } from "@bookmarker/lib/constants";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import { headers } from "next/headers";
 import Script from "next/script";
 import "../../styles/globals.css";
+import { SessionProvider } from "next-auth/react";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -62,19 +63,7 @@ export default function RootLayout({
           "dark:bg-darkgray-50 todesktop:!bg-transparent bg-subtle antialiased"
         )}
       >
-        {/* Div for Modals */}
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="system"
-          enableSystem
-          disableTransitionOnChange
-        >
-          {/* Auth Modal */}
-          {authModal}
-
-          {/* Children */}
-          <TooltipProvider>{children}</TooltipProvider>
-        </ThemeProvider>
+        {children}
       </body>
     </html>
   );

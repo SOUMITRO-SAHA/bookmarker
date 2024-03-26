@@ -1,4 +1,4 @@
-import { createNewToken, encryptPassword } from "@repo/lib";
+import { createNewToken, encryptPassword } from "@bookmarker/lib";
 import { TRPCError } from "@trpc/server";
 import * as z from "zod";
 

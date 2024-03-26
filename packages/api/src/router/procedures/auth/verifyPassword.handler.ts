@@ -1,8 +1,8 @@
 import { TRPCError } from "@trpc/server";
 import { TrpcSessionUser } from "../../../trpc.js";
 import z from "zod";
-import { db } from "@repo/db";
-import { compareEncryptedPassword } from "@repo/lib";
+import { db } from "@bookmarker/db";
+import { compareEncryptedPassword } from "@bookmarker/lib";
 
 export const ZVerifyPasswordInputSchema = z.object({
   passwordInput: z.string(),

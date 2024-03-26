@@ -3,8 +3,8 @@
 import { createTRPCNext } from "@trpc/next";
 import { httpBatchLink, loggerLink } from "@trpc/client";
 import { inferRouterInputs, inferRouterOutputs } from "@trpc/server";
-import type { AppRouter } from "@repo/api";
-import transformer from "@repo/api/transformer";
+import type { AppRouter } from "@bookmarker/api";
+import { transformer } from "@bookmarker/api";
 
 export const getBaseUrl = () => {
   if (typeof window !== "undefined") return ""; // browser should use relative url

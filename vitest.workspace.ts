@@ -18,7 +18,7 @@ const workspaces = [
   },
   {
     test: {
-      name: "@repo/packages/lib/hooks",
+      name: "@bookmarker/packages/lib/hooks",
       include: ["packages/lib/hooks/**/*.{test,spec}.{ts,js}"],
       environment: "jsdom",
       setupFiles: [],

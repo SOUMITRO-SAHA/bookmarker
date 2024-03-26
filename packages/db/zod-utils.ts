@@ -1,4 +1,4 @@
-import { isPasswordValid } from "@repo/lib/isPasswordValid.js";
+import { isPasswordValid } from "@bookmarker/lib/isPasswordValid.js";
 import z from "zod";
 
 export const stringOrNumber = z.union([

@@ -1,7 +1,7 @@
 "use server";
 import { signIn } from "@/auth";
 import { DEFAULT_LOGIN_REDIRECT } from "@/routes";
-import { LoginSchema } from "@repo/shared";
+import { LoginSchema } from "@bookmarker/shared";
 import { AuthError } from "next-auth";
 import * as z from "zod";
 

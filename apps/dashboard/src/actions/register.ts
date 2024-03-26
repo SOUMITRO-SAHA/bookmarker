@@ -1,7 +1,7 @@
 "use server";
-import { db } from "@repo/db";
-import { encryptPassword } from "@repo/lib";
-import { RegisterSchema } from "@repo/shared";
+import { db } from "@bookmarker/db";
+import { encryptPassword } from "@bookmarker/lib";
+import { RegisterSchema } from "@bookmarker/shared";
 import * as z from "zod";
 
 type Register = {

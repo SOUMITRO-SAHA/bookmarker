@@ -1,4 +1,4 @@
 {
-  "extends": "@repo/typescript-config/base.json",
-  "include": ["src", "index.ts", "transformer.ts"]
+  "extends": "@bookmarker/config/typescript-config/base.json",
+  "include": ["src", "index.ts", "transformer.ts", "client", "next", "react", "server"]
 }

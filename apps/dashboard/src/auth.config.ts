@@ -1,8 +1,8 @@
 import Credentials from "@auth/core/providers/credentials";
 import Google from "@auth/core/providers/google";
-import { db } from "@repo/db";
-import { compareEncryptedPassword } from "@repo/lib";
-import { LoginSchema } from "@repo/shared";
+import { db } from "@bookmarker/db";
+import { compareEncryptedPassword } from "@bookmarker/lib";
+import { LoginSchema } from "@bookmarker/shared";
 import type { NextAuthConfig } from "next-auth";
 
 export default {

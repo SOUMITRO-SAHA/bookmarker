@@ -14,7 +14,7 @@ import {
 import { FormError } from "@/components/auth/Error";
 import { FormSuccess } from "@/components/auth/Success";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { RegisterSchema } from "@repo/shared";
+import { RegisterSchema } from "@bookmarker/shared";
 import { RedirectType, redirect } from "next/navigation";
 import * as React from "react";
 import { useForm } from "react-hook-form";
