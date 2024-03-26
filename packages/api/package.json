@@ -1,27 +1,37 @@
 {
-  "name": "@repo/api",
+  "name": "@bookmarker/api",
   "version": "0.1.0",
-  "main": "./index.ts",
-  "types": "./index.ts",
+  "sideEffects": false,
+  "main": "index.ts",
+  "types": "index.ts",
   "license": "MIT",
+  "private": true,
+  "description": "Shared tRPC library for Bookmarker",
+  "author": {
+    "name": "SOUMITRA SAHA",
+    "email": "soumitrosahaofficial@gmail.com"
+  },
   "scripts": {
     "clean": "rm -rf .turbo node_modules",
-    "lint": "eslint",
+    "lint": "eslint . --ext .tx, .tsx",
+    "lint:fix": "eslint . --ext .ts, .tsx --fix",
     "type-check": "tsc --noEmit"
   },
   "dependencies": {
-    "@repo/db": "workspace:*",
-    "@repo/lib": "workspace:*",
+    "@bookmarker/db": "workspace:*",
+    "@bookmarker/lib": "workspace:*",
     "@tanstack/react-query": "^4.18.0",
     "@trpc/client": "^10.45.1",
+    "@trpc/next": "^10.45.1",
     "@trpc/react-query": "^10.45.1",
     "@trpc/server": "^10.45.1",
+    "@types/next": "^9.0.0",
     "superjson": "1.9.1",
+    "tsc": "^2.0.4",
     "zod": "^3.20.0"
   },
   "devDependencies": {
-    "@repo/eslint-config": "workspace:*",
-    "@repo/typescript-config": "workspace:*",
+    "@bookmarker/config": "workspace:*",
     "eslint": "^8.30.0",
     "typescript": "^4.9.4"
   }
