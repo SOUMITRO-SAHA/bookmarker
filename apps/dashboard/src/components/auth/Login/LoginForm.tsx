@@ -13,7 +13,7 @@ import {
 import { FormError } from "@/components/auth/Error";
 import { FormSuccess } from "@/components/auth/Success";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { LoginSchema } from "@repo/shared";
+import { LoginSchema } from "@bookmarker/shared";
 import * as React from "react";
 import { useForm } from "react-hook-form";
 import * as z from "zod";
@@ -34,11 +34,11 @@ const LoginForm: React.FC<LoginFormProps> = () => {
     },
   });
 
-  function onSubmit(values: z.infer<typeof LoginSchema>) {
+  const onSubmit = (values: z.infer<typeof LoginSchema>) => {
     // Before Calling the Server Actions Clearing the States
     setSuccess("");
     setError("");
-
+    console.log("Hellow From Login");
     // Calling the Server Actions
     startTransition(() => {
       login(values)
@@ -48,7 +48,7 @@ const LoginForm: React.FC<LoginFormProps> = () => {
         })
         .catch((err) => setError(err));
     });
-  }
+  };
 
   return (
     <Form {...form}>

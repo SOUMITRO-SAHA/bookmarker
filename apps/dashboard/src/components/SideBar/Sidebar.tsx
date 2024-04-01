@@ -1,5 +1,7 @@
 "use client";
+
 import { Button } from "@/common/Button";
+import { DialogComponent } from "@/common/Dialog";
 import { CommandMenu } from "@/common/Search";
 import {
   Command,
@@ -33,6 +35,7 @@ import {
 import Link from "next/link";
 import * as React from "react";
 import UserDetails from "../UserDetails/UserDetails";
+import { signOut } from "@/auth";
 
 interface SidebarProps {
   // Props
@@ -43,6 +46,21 @@ export const Sidebar: React.FC<SidebarProps> = () => {
   const [isMouseInRange, setIsMouseInRange] = React.useState<boolean>(false);
   const [isMouseOverSidebar, setIsMouseOverSidebar] =
     React.useState<boolean>(false);
+
+  // Create New Folder
+  // const createNewFolder = () => {
+  //   try {
+  //   } catch (error) {}
+  // };
+
+  const handleLogout = async () => {
+    try {
+      await signOut();
+    } catch (error) {
+      if (error instanceof Error) {
+      }
+    }
+  };
 
   // Side Effects
   React.useEffect(() => {
@@ -135,9 +153,16 @@ export const Sidebar: React.FC<SidebarProps> = () => {
                       </CommandItem>
                     </Link>
                   ))}
-                  <CommandItem className="cursor-pointer text-subtle">
-                    <PlusCircle className="w-4 h-4 mr-3" />
-                    <span>New Folder</span>
+                  <CommandItem>
+                    <DialogComponent
+                      title={`Create New Folder`}
+                      renderComponent={<div>H</div>}
+                    >
+                      <div className="flex cursor-pointer text-subtle">
+                        <PlusCircle className="w-4 h-4 mr-3" />
+                        <span>New Folder</span>
+                      </div>
+                    </DialogComponent>
                   </CommandItem>
                 </CommandGroup>
                 <CommandSeparator />
@@ -184,7 +209,7 @@ export const Sidebar: React.FC<SidebarProps> = () => {
                     <Heart className="w-4 h-4 mr-2 text-pink-500" />
                     <span>Support</span>
                   </DropdownMenuItem>
-                  <DropdownMenuItem>
+                  <DropdownMenuItem onClick={handleLogout}>
                     <LogOut className="w-4 h-4 mr-2" />
                     <span>Log out</span>
                   </DropdownMenuItem>

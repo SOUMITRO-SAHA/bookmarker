@@ -9,6 +9,7 @@ import {
   CircleUserRound,
   LibraryBig,
   ListTodo,
+  MessageSquareText,
   Play,
   Plus,
   Settings,
@@ -41,6 +42,11 @@ export type Category = {
   parent: {
     id: number | string;
   };
+};
+
+export type Tag = {
+  id: number | string;
+  label: string;
 };
 
 export const menuItems: MenuItem[] = [
@@ -95,6 +101,15 @@ export const menuItems: MenuItem[] = [
   },
   {
     id: 6,
+    label: "Posts",
+    route: "/dashboard/posts",
+    icon: (className: string) => (
+      <MessageSquareText className={cn(className)} />
+    ),
+    subfolders: null,
+  },
+  {
+    id: 7,
     label: "Unread",
     route: "/dashboard/unread",
     icon: (className: string) => <ListTodo className={cn(className)} />,

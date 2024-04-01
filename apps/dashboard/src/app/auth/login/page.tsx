@@ -1,15 +1,12 @@
 "use client";
+
 import { Button } from "@/common/Button";
 import LoginForm from "@/components/auth/Login/LoginForm";
 import { cn } from "@/lib/utils";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { signupSchema } from "@repo/db/zod-utils";
 import { signIn } from "next-auth/react";
 import Link from "next/link";
 import * as React from "react";
-import { useForm } from "react-hook-form";
 import { FaGoogle, FaInstagram, FaLinkedin, FaTwitter } from "react-icons/fa6";
-import z from "zod";
 
 interface pageProps {
   //Props

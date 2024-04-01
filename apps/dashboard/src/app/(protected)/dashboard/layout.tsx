@@ -1,9 +1,11 @@
-import { Categories } from "@/common/Categories";
+import { Button } from "@/common/Button";
+import { ExpandableList } from "@/common/ExpandableList";
 import { Notification } from "@/common/Notification";
 import { Recent } from "@/common/Recent";
+import { Input } from "@/common/ui/input";
 import { DashboardAppHeader } from "@/components/AppHeader";
 import { Sidebar } from "@/components/SideBar";
-import { Category } from "@/lib/constant";
+import { Category, Tag } from "@/lib/constant";
 import { Metadata } from "next";
 import * as React from "react";
 
@@ -27,6 +29,17 @@ export const categoryLists: Category[] = [
   },
 ];
 
+const tagLists: Tag[] = [
+  {
+    id: 111,
+    label: "Twitter",
+  },
+  {
+    id: 112,
+    label: "YT",
+  },
+];
+
 export default function DashboardLayout({
   children,
 }: {
@@ -35,6 +48,7 @@ export default function DashboardLayout({
   const renderFilterDialog = () => {
     return <div>Date</div>;
   };
+
   return (
     <main className="flex w-screen h-screen bg-subtle">
       {/* Sidebar */}
@@ -51,9 +65,20 @@ export default function DashboardLayout({
         <div className="mx-8">{children}</div>
       </section>
 
-      <section>
+      <section className="overflow-y-auto">
         <aside className="w-[18rem] mr-10 m-5 ml-2 flex flex-col gap-3">
-          <Categories lists={categoryLists} />
+          <ExpandableList
+            expanded
+            title="Categories"
+            singularTitle="Category"
+            items={categoryLists}
+          />
+          <ExpandableList
+            expanded
+            title="Tags"
+            singularTitle="Tag"
+            items={tagLists}
+          />
           <Notification />
           <Recent />
         </aside>
