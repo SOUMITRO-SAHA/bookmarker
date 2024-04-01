@@ -1,8 +1,8 @@
 {
   "name": "@bookmarker/db",
   "version": "0.0.0",
-  "description": "",
-  "main": "./index.ts",
+  "description": "This is the DB for the bookmarker",
+  "main": "index.ts",
   "types": "index.d.ts",
   "files": [
     "client",
@@ -34,7 +34,6 @@
     "@prisma/client": "^5.9.1",
     "@prisma/extension-accelerate": "^0.6.3",
     "@prisma/generator-helper": "^5.10.1",
-    "@bookmarker/lib": "workspace:*",
     "prisma": "^5.9.1",
     "ts-node": "^10.9.2",
     "zod": "^3.20.0",

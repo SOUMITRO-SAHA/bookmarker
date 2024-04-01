@@ -163,8 +163,8 @@ model Folder {
   id         String      @id @default(cuid())
   label      String      @unique
   route      String      @unique
-  iconId     String
-  icon       Icon        @relation(fields: [iconId], references: [id])
+  iconId     String?
+  icon       Icon?       @relation(fields: [iconId], references: [id])
   subfolders Subfolder[]
   Post       Post[]
 
