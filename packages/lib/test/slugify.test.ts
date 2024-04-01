@@ -1,53 +1,52 @@
 import { describe, expect, it } from "vitest";
 
-import { slugify } from "../slugify.js";
-
+import { slugify } from "../CORE/slugify.js";
 describe("slugify", () => {
-  it("should convert to lowercase", () => {
-    expect(slugify("Hello")).toEqual("hello");
-    expect(slugify("HELLO")).toEqual("hello");
+  it("For Empty String", () => {
+    expect(slugify("")).toBe("");
   });
 
-  it("should convert spaces, _, +, # and any other special character to -", () => {
-    expect(slugify("hello there")).toEqual("hello-there");
-    expect(slugify("hello_there")).toEqual("hello-there");
-    expect(slugify("hello$there")).toEqual("hello-there");
-    expect(slugify("hello+there")).toEqual("hello-there");
-    expect(slugify("#hellothere")).toEqual("hellothere");
+  it("For Single Word with Special Characters", () => {
+    expect(slugify("@Hello$")).toBe("hello");
   });
 
-  it("should keep numbers as is", () => {
-    expect(slugify("hellothere123")).toEqual("hellothere123");
-    expect(slugify("321hello there123")).toEqual("321hello-there123");
-    expect(slugify("hello$there")).toEqual("hello-there");
+  it("For Multiple Words with Special Characters", () => {
+    expect(slugify("!@Hello World#$")).toBe("hello-world");
   });
 
-  // So that user can freely add spaces and any other character iteratively and it get's converted to - later on.
-  it("should remove dashes from start and end.", () => {
-    expect(slugify("hello-there-")).toEqual("hello-there");
-    expect(slugify("hello-there_")).toEqual("hello-there");
-    expect(slugify("_hello-there_")).toEqual("hello-there");
-    expect(slugify("$hello-there_")).toEqual("hello-there");
+  it("For CamelCasing Words with Special Characters", () => {
+    expect(slugify("hello@World$")).toBe("hello-world");
   });
 
-  it("should keep periods as is except the start and end", () => {
-    expect(slugify("hello.there")).toEqual("hello.there");
-    expect(slugify("h.e.l.l.o.t.h.e.r.e")).toEqual("h.e.l.l.o.t.h.e.r.e");
-  });
-  it("should remove consecutive periods", () => {
-    expect(slugify("hello...there")).toEqual("hello.there");
-    expect(slugify("hello....there")).toEqual("hello.there");
-    expect(slugify("hello..there")).toEqual("hello.there");
-  });
-  it("should remove periods from start and end", () => {
-    expect(slugify(".hello.there")).toEqual("hello.there");
-    expect(slugify(".hello.there.")).toEqual("hello.there");
-    expect(slugify("hellothere.")).toEqual("hellothere");
+  it("For Single Word with Consecutive Special Characters", () => {
+    expect(slugify("@@Hello$$")).toBe("hello");
   });
 
-  // This is failing, if we want to fix it, one approach is as used in getValidRhfFieldName
-  it.skip("should remove unicode and emoji characters", () => {
-    expect(slugify("Hello 📚🕯️®️ There")).toEqual("hello---------there");
-    expect(slugify("📚🕯️®️")).toEqual("");
+  it("For Multiple Words with Consecutive Special Characters", () => {
+    expect(slugify("!@@Hello##World$$")).toBe("hello-world");
+  });
+
+  it("For CamelCasing Words with Consecutive Special Characters", () => {
+    expect(slugify("hello@@World$$")).toBe("hello-world");
+  });
+
+  it("For Single Word with Leading and Trailing Spaces", () => {
+    expect(slugify("   Hello   ")).toBe("hello");
+  });
+
+  it("For Multiple Words with Leading and Trailing Spaces", () => {
+    expect(slugify("   Hello   World   ")).toBe("hello-world");
+  });
+
+  it("For CamelCasing Words with Leading and Trailing Spaces", () => {
+    expect(slugify("   hello   World   ")).toBe("hello-world");
+  });
+
+  it("For Special Characters Only", () => {
+    expect(slugify("@#$%^&*()")).toBe("");
+  });
+
+  it("For Special Characters with Spaces", () => {
+    expect(slugify("!@# Hello $%^ World &*()")).toBe("hello-world");
   });
 });

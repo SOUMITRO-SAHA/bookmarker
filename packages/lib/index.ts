@@ -6,3 +6,4 @@ export * from "./CORE/safeStringify";
 export * from "./CORE/comparePassword";
 export * from "./CORE/encryptPassword";
 export * from "./CORE/token";
+export * from "./CORE/slugify";
